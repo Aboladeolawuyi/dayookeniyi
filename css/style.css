@@ -729,7 +729,6 @@ footer span {
   }
 }
 /* ================ NEW PROPERTY PAGE ========================= */
-/* PROPERTY PAGE */
 .property-page-section {
   padding: 80px 20px;
   background: #f8fafc;
@@ -812,19 +811,16 @@ footer span {
   color: #475569;
   margin-bottom: 8px;
 }
-
 .property-page-price {
   font-size: 1.1rem;
   font-weight: 700;
   color: #1e293b;
 }
-
 /* SCROLL ANIMATION */
 .property-page-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 /* RESPONSIVE */
 @media (max-width: 600px) {
   .property-page-image img {
