@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+  padding: 40px;
+}
+
+/* GRID LAYOUT */
+.cards-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: visible;
+}
+
+/* HEADER */
+.card-header {
+  width: 100%;
+  padding: 16px;
+  background: #1e293b;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* BODY (Detached from grid flow) */
+.card-body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 16px;
+  transition: max-height 0.35s ease, padding 0.3s ease;
+  z-index: 10;
+}
+
+.card-body p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* ACTIVE */
+.card.active .card-body {
+  max-height: 300px;
+  padding: 16px;
+}

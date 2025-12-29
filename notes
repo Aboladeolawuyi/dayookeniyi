@@ -1,0 +1,10 @@
+I need you to do a great work for me.
+
+I want to have 10 cards, let the card names be from A to J
+let the description of the cards be lorem ipsum
+
+I want the card to be dynamic, and roll down on click. 
+let the role down of independent of each cards.
+EG
+I can roll down card A and card C alone without touching B and it will be rolled up.
+html, CSS and JavaScript
