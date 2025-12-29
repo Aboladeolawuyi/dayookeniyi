@@ -64,3 +64,16 @@ const observers = new IntersectionObserver((entries) => {
 
 propertyCards.forEach(card => observers.observe(card));
 
+// Animate property cards on scroll
+const propertyCardss = document.querySelectorAll('.property-page-card');
+
+const observerss = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observerss.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+propertyCardss.forEach(card => observerss.observe(card));
