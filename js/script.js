@@ -132,3 +132,25 @@ properties.forEach((prop) => {
 
   grid.appendChild(card);
 });
+function filterProperties() {
+  const search = document.getElementById("searchInput").value.toLowerCase();
+  const type = document.getElementById("typeFilter").value;
+  const price = document.getElementById("priceFilter").value;
+
+  const cards = document.querySelectorAll(".property-card");
+
+  cards.forEach((card) => {
+    const title = card.dataset.title.toLowerCase();
+    const location = card.dataset.location.toLowerCase();
+    const propType = card.dataset.type;
+    const propPrice = card.dataset.price;
+
+    let matchesSearch =
+      title.includes(search) || location.includes(search);
+    let matchesType = !type || propType === type;
+    let matchesPrice = !price || propPrice === price;
+
+    card.style.display =
+      matchesSearch && matchesType && matchesPrice ? "block" : "none";
+  });
+}
