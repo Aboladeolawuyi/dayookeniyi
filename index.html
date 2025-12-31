@@ -250,120 +250,75 @@
     </div>
   </section>
 
-  <section class="property-listing-section">
-    <div class="property-listing-container">
-      <div class="property-grid">
-        <!-- Property Card 1 -->
-        <div class="property-card">
-          <div class="property-image">
-            <img src="assets/properties/property1.jpeg" alt="Property 1" />
-            <span class="property-status sale">For Sale</span>
-          </div>
-          <div class="property-info">
-            <h3>123 Maple Street, Lagos</h3>
-            <p class="property-features">3 Bed • 2 Bath • 600 sqm</p>
-            <p class="property-price">₦250 Million</p>
-          </div>
-        </div>
-
-        <!-- Property Card 2 -->
-        <div class="property-card">
-          <div class="property-image">
-            <img src="assets/properties/property2.jpeg" alt="Property 2" />
-            <span class="property-status rent">For Rent</span>
-          </div>
-          <div class="property-info">
-            <h3>45 Palm Avenue, Lagos</h3>
-            <p class="property-features">2 Bed • 2 Bath • 400 sqm</p>
-            <p class="property-price">₦2 Million / Annum</p>
-          </div>
-        </div>
-        <!-- Property Card 3 -->
-        <div class="property-card">
-          <div class="property-image">
-            <img src="assets/properties/property3.jpeg" alt="Property 3" />
-            <span class="property-status sale">For Sale</span>
-          </div>
-          <div class="property-info">
-            <h3>78 Oak Drive, Lagos</h3>
-            <p class="property-features">4 Bed • 5 Bath • 500 sqm</p>
-            <p class="property-price">₦350 Million</p>
-          </div>
-        </div>
-        <!-- Property Card 4 -->
-        <div class="property-card">
-          <div class="property-image">
-            <img src="assets/properties/property4.jpeg" alt="Property 4" />
-            <span class="property-status rent">For Rent</span>
-          </div>
-          <div class="property-info">
-            <h3>12 Cedar Lane, Lagos</h3>
-            <p class="property-features">2 Bed • 2 Bath • 300 sqm</p>
-            <p class="property-price">₦3 Million / Annum</p>
-          </div>
-        </div>
-
-        <!-- Property Card 5 -->
-        <div class="property-card">
-          <div class="property-image">
-            <img src="assets/properties/property5.jpeg" alt="Property 5" />
-            <span class="property-status sale">For Sale</span>
-          </div>
-          <div class="property-info">
-            <h3>56 Birch Road, Lagos</h3>
-            <p class="property-features">3 Bed • 2 Bath • 450 sqm</p>
-            <p class="property-price">₦220 Million</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="
-  margin:30px auto 0;
-  display:block;
-  max-width:260px;
-">
-      <a href="properties.html" class="btn" style="display:block; text-align:center;">
-        View All Properties
-      </a>
-    </div>
-  </section>
+ 
 
   <!-- ================= WHY CHOOSE US ================= -->
-  <section class="section light-bg">
-    <div class="container">
-      <h2>Why Choose Dayo Okeniyi & Co.</h2>
+  <section class="section light-bg" style="padding:60px 20px; background:#f9fafc;">
+  <div class="container" style="max-width:1200px; margin:auto; text-align:center;">
+    <h2 style="font-size:32px; color:#0b3c5d; margin-bottom:40px;">Why Choose Dayo Okeniyi & Co.</h2>
 
-      <div class="grid">
-        <div class="card">
-          <h4>Professional Integrity</h4>
-          <p>
-            We uphold the highest ethical standards in all client engagements.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Technical Competence</h4>
-          <p>
-            Deep expertise across valuation, agency, advisory and project
-            delivery.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Client-Centered Approach</h4>
-          <p>
-            Tailored solutions aligned with client objectives and market
-            realities.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Nationwide Reach</h4>
-          <p>Operational presence in Lagos, Ibadan and across Nigeria.</p>
-        </div>
+    <div class="grid" style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:30px;
+    ">
+      
+      <div class="card" style="
+        background:#fff;
+        padding:25px;
+        border-radius:16px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        transition:transform 0.3s, box-shadow 0.3s;
+      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" 
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+        <img src="assets/integrity.jpg" alt="Integrity" style="width:200px; margin-bottom:15px;">
+        <h4 style="color:#1d6fa5; margin-bottom:10px;">Professional Integrity</h4>
+        <p style="color:#555; line-height:1.6;">We uphold the highest ethical standards in all client engagements.</p>
       </div>
+
+      <div class="card" style="
+        background:#fff;
+        padding:25px;
+        border-radius:16px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        transition:transform 0.3s, box-shadow 0.3s;
+      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" 
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+        <img src="assets/competence.jpg" alt="Competence" style="width:200px; margin-bottom:15px;">
+        <h4 style="color:#1d6fa5; margin-bottom:10px;">Technical Competence</h4>
+        <p style="color:#555; line-height:1.6;">Deep expertise across valuation, agency, advisory and project delivery.</p>
+      </div>
+
+      <div class="card" style="
+        background:#fff;
+        padding:25px;
+        border-radius:16px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        transition:transform 0.3s, box-shadow 0.3s;
+      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" 
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+        <img src="assets/client.jpg" alt="Client" style="width:200px; margin-bottom:15px;">
+        <h4 style="color:#1d6fa5; margin-bottom:10px;">Client-Centered Approach</h4>
+        <p style="color:#555; line-height:1.6;">Tailored solutions aligned with client objectives and market realities.</p>
+      </div>
+
+      <div class="card" style="
+        background:#fff;
+        padding:25px;
+        border-radius:16px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        transition:transform 0.3s, box-shadow 0.3s;
+      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" 
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+        <img src="assets/nationwide.svg" alt="Nationwide" style="width:200px; margin-bottom:15px;">
+        <h4 style="color:#1d6fa5; margin-bottom:10px;">Nationwide Reach</h4>
+        <p style="color:#555; line-height:1.6;">Operational presence in Lagos, Ibadan and across Nigeria.</p>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- ================= AFFILIATIONS ================= -->
   <section class="section">
@@ -382,7 +337,7 @@
         <img src="assets/affiliations/rics.jpeg" alt="RICS Logo" />
         <img src="assets/affiliations/fig.png" alt="FIG Logo" />
         <img src="assets/affiliations/ivsc.png" alt="IVSC Logo" />
-        <img src="assets/affiliations/fiabci.jfif" alt="FIABCI Logo" />
+        <img src="assets/affiliations/fiabci.jpg" alt="FIABCI Logo" />
       </div>
     </div>
   </section>
