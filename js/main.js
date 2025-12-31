@@ -8,7 +8,7 @@ setInterval(() => {
   slides[index].classList.remove("active");
   index = (index + 1) % slides.length;
   slides[index].classList.add("active");
-}, 5000);
+}, 2000);
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
@@ -76,4 +76,3 @@ const observerss = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 
-propertyCardss.forEach(card => observerss.observe(card));

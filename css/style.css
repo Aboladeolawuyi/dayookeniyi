@@ -1,7 +1,7 @@
 :root {
   --primary: #0b3c5d;
   --secondary: #1d6fa5;
-  --accent: #f4b400;
+  --accent: #f40000;
   --light: #a9d3ef;
   --dark: #1c1c1c;
   --max-width: 1200px;
@@ -369,6 +369,10 @@ footer span {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 /* SERVICE TILE */
@@ -827,3 +831,10 @@ footer span {
     height: 180px;
   }
 }
+
+
+
+
+
+
+
