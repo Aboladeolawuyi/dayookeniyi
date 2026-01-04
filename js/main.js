@@ -89,3 +89,43 @@ const observerss = new IntersectionObserver((entries) => {
       if (e.target === modal) modal.style.display = "none";
     });
   };
+  // Detect mobile devices
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // Select all dropdown toggles
+    const toggles = document.querySelectorAll('.dropdown-sub-toggle');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation(); // prevent closing when clicking inside
+
+        // Close other open dropdowns
+        document.querySelectorAll('.mega-menu').forEach(menu => {
+          if (menu !== this.nextElementSibling) {
+            menu.style.opacity = 0;
+            menu.style.visibility = 'hidden';
+          }
+        });
+
+        // Toggle current menu
+        const menu = this.nextElementSibling;
+        if (menu.style.visibility === 'visible') {
+          menu.style.opacity = 0;
+          menu.style.visibility = 'hidden';
+        } else {
+          menu.style.opacity = 1;
+          menu.style.visibility = 'visible';
+        }
+      });
+    });
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.mega-menu').forEach(menu => {
+        menu.style.opacity = 0;
+        menu.style.visibility = 'hidden';
+      });
+    });
+  }
+
