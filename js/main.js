@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Dayo Okeniyi & Co. website loaded successfully");
+  console.log("Shelter Nest Realty website loaded successfully");
 });
 let slides = document.querySelectorAll(".slide");
 let index = 0;
@@ -128,4 +128,9 @@ const observerss = new IntersectionObserver((entries) => {
       });
     });
   }
+  const toggleBtn = document.getElementById("toggleBtn");
+  const section = document.getElementById("valuationsSection");
 
+  toggleBtn.addEventListener("click", () => {
+    section.classList.toggle("hidden");
+  });
