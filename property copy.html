@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shelter Nest Realty | Estate Surveyors & Valuers</title>
+    <link rel="icon" type="image/png" href="assets/favicon.ico" />
+    <meta
+      name="description"
+      content="Professional Estate Surveying, Valuation, Property Management and Real Estate Advisory Services in Nigeria"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body
+    style="
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f4f8;
+      margin: 0;
+
+      padding: 0px 4px;
+    "
+  >
+    <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+          <div class="brand">
+          <a href="index.html" class="logo-link">
+            <img src="assets/new_logo.jpg" alt="Shelter Nest Realty Logo" class="logo" />
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+          <!-- Home -->
+          <a href="index.html">Home</a>
+
+          <!-- ABOUT US DROPDOWN -->
+          <div class="nav-item dropdown" style="cursor: pointer;">
+            <a href="#" class="dropdown-toggle">
+              About Us <span class="arrow">▾</span>
+            </a>
+
+            <div class="dropdown-menu">
+              <a href="company-overview.html">Company Overview</a>
+              <a href="management-team.html">Management Team</a>
+              <a href="affiliations.html">Professional Affiliates</a>
+            </div>
+          </div>
+
+          <!-- SERVICES DROPDOWN -->
+          <div class="nav-item dropdown">
+            <a href="services.html" class="dropdown-toggle">
+              Services <span class="arrow">▾</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-wide">
+              <a href="valuation.html">Valuation for All Purposes</a>
+              <a href="propertymanagement.html">Property & Facility Management</a>
+              <a href="estateagency.html">Estate Agency</a>
+              <a href="feasibility.html">Feasibility & Viability Appraisal</a>
+              <a href="titlesearch.html">Title Search & Verification</a>
+              <a href="projectmanagement.html">Project Management</a>
+              <a href="propertymarketing.html">Property Marketing</a>
+              <a href="advisory.html">Real Estate Advisory Services</a>
+            </div>
+          </div>
+
+          <!-- Other Links -->
+          <a href="properties.html">Properties</a>
+          <a href="contact.html">Contact Us</a>
+          <!-- INSIGHTS MEGA MENU -->
+
+          <div class="nav-item mega-dropdown">
+            <a href="#" class="dropdown-toggle">
+              Insights <span class="arrow">▾</span>
+            </a>
+
+            <div class="mega-menu">
+
+
+
+              <!-- COLUMN 2 -->
+              <div class="mega-col webinar">
+                <h4>Our Socials</h4>
+
+                <div class="social-row">
+                  <a href="#"> <img src="assets/linkedin.jpg" alt="LinkedIn"> LinkedIn</a>
+                 <br>
+                  <a href="#"><img src="assets/ig.jpg" alt="Instagram">Instagram</a>
+                </div>
+              </div>
+
+              <!-- COLUMN 3 -->
+              <div class="mega-col webinar">
+                <h4>Podcast</h4>
+
+                <a href="https://www.youtube.com/watch?v=1oDmcjf4MO4&t">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  How Property Development is Transforming Nigerian Neighborhoods
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=9yST5KGYSmE">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Smart Investment Strategies: Maximizing Returns in Lagos Real Estate
+                </a>
+
+                <a href="#">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Rising property prices and rental yields: What’s driving the Nigerian Real Estate boom?
+                </a>
+
+                <a href="#">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Real Estate Playbook
+                </a>
+
+                <a href="https://www.youtube.com/@shelternestrealty" class="see-more">See more →</a>
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </nav>
+    </div>
+  </header>
+
+    <button
+      onclick="history.back()"
+      style="
+        margin-top: 25px;
+        background: #0b3c5d;
+        color: white;
+        border: none;
+        padding: 20px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        margin-left: 20px;
+      "
+    >
+      ← Back to Properties
+    </button>
+
+    <div
+      id="property"
+      style="
+        max-width: 1100px;
+        margin: auto;
+        background: #fff;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      "
+    ></div>
+    <section class="cta">
+      <div class="container">
+        <h2>Need Professional Real Estate Advice?</h2>
+        <a href="contact.html" class="btn">Speak With Our Team</a>
+      </div>
+    </section>
+
+    <script>
+      const prop = JSON.parse(localStorage.getItem("selectedProperty"));
+      const container = document.getElementById("property");
+
+      if (!prop) {
+        container.innerHTML = "<p>Property not found</p>";
+      } else {
+        container.innerHTML = `
+    <img src="${prop.images[0]}" style="
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      border-radius:16px;
+      margin-bottom:25px;
+    ">
+
+    <h2 style="margin-bottom:5px">${prop.title}</h2>
+    <div style="color:#777;margin-bottom:10px">${prop.location}</div>
+    <div style="
+      font-size:22px;
+      font-weight:bold;
+      color:#0a3d62;
+      margin-bottom:20px;
+    ">
+      ${prop.price}
+    </div>
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+      gap:15px;
+      margin-bottom:30px;
+    ">
+      ${prop.images
+        .map(
+          (img) => `
+        <img src="${img}" style="
+          width:100%;
+          height:200px;
+          object-fit:cover;
+          border-radius:12px;
+        ">
+      `
+        )
+        .join("")}
+    </div>
+
+    <p style="line-height:1.7;color:#444">
+      ${prop.details}
+    </p>
+  `;
+      }
+    </script>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
+      Rights Reserved
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

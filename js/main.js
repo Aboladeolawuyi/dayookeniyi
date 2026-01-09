@@ -8,7 +8,7 @@ setInterval(() => {
   slides[index].classList.remove("active");
   index = (index + 1) % slides.length;
   slides[index].classList.add("active");
-}, 2000);
+}, 3000);
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
@@ -128,9 +128,4 @@ const observerss = new IntersectionObserver((entries) => {
       });
     });
   }
-  const toggleBtn = document.getElementById("toggleBtn");
-  const section = document.getElementById("valuationsSection");
-
-  toggleBtn.addEventListener("click", () => {
-    section.classList.toggle("hidden");
-  });
+ 

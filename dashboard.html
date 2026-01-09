@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | Property Management</title>
+    <link rel="icon" type="image/png" href="assets/favicon.ico" />
+  <meta name="description"
+    content="Professional Estate Surveying, Valuation, Property Management and Real Estate Advisory Services in Nigeria" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+ <style>
+  :root {
+    --primary: #0a3d62;
+    --primary-light: #0d5ea6;
+
+  } 
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    margin: 0;
+    padding: 0px 20px;
+    color: var(--text);
+  }
+
+  .dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  h2.page-title {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 40px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  /* ---------- FORM CARD ---------- */
+  .property-form {
+    background: var(--card);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .form-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--primary);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+
+  label {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #dcdde1;
+    font-size: 15px;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 2px rgba(13,94,166,0.15);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .file-input {
+    grid-column: 1 / -1;
+  }
+
+  .submit-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .submit-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+
+  hr {
+    margin: 60px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  /* ---------- PROPERTIES GRID ---------- */
+  .properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .property-card {
+    background: var(--card);
+    padding: 18px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
+
+  .property-card h4 {
+    margin: 0 0 6px 0;
+    color: var(--primary);
+    font-size: 18px;
+  }
+
+  .property-card p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .property-card strong {
+    display: block;
+    margin: 8px 0;
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  .property-card img,
+  .property-card video {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+</style>
+
+</head>
+
+<body>
+      <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+           <div class="brand">
+          <a href="index.html" class="logo-link">
+            <img src="assets/new_logo.jpg" alt="Shelter Nest Realty Logo" class="logo" />
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+          <!-- Home -->
+          <a href="index.html">Home</a>
+
+          <!-- ABOUT US DROPDOWN -->
+          <div class="nav-item dropdown" style="cursor: pointer;">
+            <a href="#" class="dropdown-toggle">
+              About Us <span class="arrow">▾</span>
+            </a>
+
+            <div class="dropdown-menu">
+              <a href="company-overview.html">Company Overview</a>
+              <a href="management-team.html">Management Team</a>
+              <a href="affiliations.html">Professional Affiliates</a>
+            </div>
+          </div>
+
+          <!-- SERVICES DROPDOWN -->
+          <div class="nav-item dropdown">
+            <a href="services.html" class="dropdown-toggle">
+              Services <span class="arrow">▾</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-wide">
+              <a href="valuation.html">Valuation for All Purposes</a>
+              <a href="propertymanagement.html">Property & Facility Management</a>
+              <a href="estateagency.html">Estate Agency</a>
+              <a href="feasibility.html">Feasibility & Viability Appraisal</a>
+              <a href="titlesearch.html">Title Search & Verification</a>
+              <a href="projectmanagement.html">Project Management</a>
+              <a href="propertymarketing.html">Property Marketing</a>
+              <a href="advisory.html">Real Estate Advisory Services</a>
+            </div>
+          </div>
+
+          <!-- Other Links -->
+          <a href="properties.html">Properties</a>
+          <a href="contact.html">Contact Us</a>
+          <!-- INSIGHTS MEGA MENU -->
+
+          <div class="nav-item mega-dropdown">
+            <a href="#" class="dropdown-toggle">
+              Insights <span class="arrow">▾</span>
+            </a>
+
+            <div class="mega-menu">
+
+
+
+              <!-- COLUMN 2 -->
+              <div class="mega-col webinar">
+                <h4>Our Socials</h4>
+
+                <div class="social-row">
+                  <a href="#"> <img src="assets/linkedin.jpg" alt="LinkedIn"> LinkedIn</a>
+                 <br>
+                  <a href="#"><img src="assets/ig.jpg" alt="Instagram">Instagram</a>
+                </div>
+              </div>
+
+              <!-- COLUMN 3 -->
+              <div class="mega-col webinar">
+                <h4>Podcast</h4>
+
+                <a href="https://www.youtube.com/watch?v=1oDmcjf4MO4&t">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  How Property Development is Transforming Nigerian Neighborhoods
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=9yST5KGYSmE">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Smart Investment Strategies: Maximizing Returns in Lagos Real Estate
+                </a>
+
+                <a href="#">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Rising property prices and rental yields: What’s driving the Nigerian Real Estate boom?
+                </a>
+
+                <a href="#">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Real Estate Playbook
+                </a>
+
+                <a href="https://www.youtube.com/@shelternestrealty" class="see-more">See more →</a>
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </nav>
+    </div>
+  </header>
+<div class="dashboard-container">
+
+  <h2 class="page-title">Property Management Dashboard</h2>
+
+  <form id="propertyForm" class="property-form">
+    <div class="form-title">Add New Property</div>
+
+    <div class="form-grid">
+      <div>
+        <label>Property Title</label>
+        <input type="text" id="title" placeholder="e.g. Luxury 3 Bedroom Duplex" required>
+      </div>
+
+      <div>
+        <label>Location</label>
+        <input type="text" id="location" placeholder="e.g. Lekki, Lagos" required>
+      </div>
+
+      <div>
+        <label>Price (₦)</label>
+        <input type="number" id="price" placeholder="e.g. 25000000" required>
+      </div>
+
+      <div>
+        <label>Sale / Rent</label>
+        <select id="sale_rent" required>
+          <option value="">Select</option>
+          <option value="Sale">Sale</option>
+          <option value="Rent">Rent</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Property Type</label>
+        <select id="property_type" required>
+          <option value="">Select</option>
+          <option value="Residential">Residential</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Land">Land</option>
+        </select>
+      </div>
+
+      <div class="file-input">
+        <label>Property Images / Videos</label>
+        <input type="file" id="mediaFiles" multiple accept="image/*,video/*">
+      </div>
+
+      <div class="file-input">
+        <label>Property Details</label>
+        <textarea id="details" placeholder="Describe the property features, location benefits, etc." required></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Add Property</button>
+  </form>
+
+  <hr>
+
+  <!-- <div id="myProperties" class="properties-grid"></div> -->
+
+</div>
+  <footer>
+    © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
+    Rights Reserved
+  </footer>
+  <script src="js/script.js"></script>
+  <script src="js/main.js"></script>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// Supabase credentials
+const supabase = createClient(
+  "https://fcxeuhmgizpjzldaervh.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50"
+);
+
+// 1️⃣ Get logged-in user
+const { data: { session } } = await supabase.auth.getSession();
+if (!session) window.location.href = "login.html";
+const user = session.user;
+
+// Redirect on logout/session expiration
+supabase.auth.onAuthStateChange((event, newSession) => {
+  if (!newSession) window.location.href = "login.html";
+});
+
+// 2️⃣ Load properties created by the logged-in user
+async function loadProperties() {
+  try {
+    const { data: properties, error } = await supabase
+      .from("properties")
+      .select("*")
+      .eq("created_by", user.id)
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    if (!properties || properties.length === 0) {
+      document.getElementById("myProperties").innerHTML = "<p>No properties yet</p>";
+      return;
+    }
+
+    document.getElementById("myProperties").innerHTML = properties.map(p => {
+      const mediaHTML = (p.images || []).map(url => {
+        if (url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg")) {
+          return `<video controls><source src="${url}" type="video/mp4"></video>`;
+        } else {
+          return `<img src="${url}" alt="${p.title}" />`;
+        }
+      }).join("");
+
+      return `
+        <div class="property-card">
+          <h4>${p.title}</h4>
+          <p>${p.location}</p>
+          <strong>₦${Number(p.price).toLocaleString()}</strong>
+          <p>${p.sale_rent} | ${p.property_type}</p>
+          <div class="media">${mediaHTML}</div>
+          <p>${p.details}</p>
+        </div>
+      `;
+    }).join("");
+
+  } catch (err) {
+    console.error("Error loading properties:", err.message);
+    document.getElementById("myProperties").innerHTML = "<p>Error loading properties. Check console.</p>";
+  }
+}
+
+// 3️⃣ Upload files to storage and get public URLs
+async function uploadFilesAndGetUrls(files) {
+  const urls = [];
+  if (!files || files.length === 0) return urls;
+
+  for (const file of files) {
+    const fileName = `${Date.now()}_${file.name}`;
+    const filePath = fileName;
+
+    const { error } = await supabase.storage
+      .from("properties")
+      .upload(filePath, file);
+
+    if (error) {
+      console.error("Upload error:", error.message);
+      continue;
+    }
+
+    const { data } = supabase.storage
+      .from("properties")
+      .getPublicUrl(filePath);
+
+    urls.push(data.publicUrl);
+  }
+  console.log("Uploaded URLs:", urls);
+  return urls;
+}
+
+// 4️⃣ Handle form submission
+document.getElementById("propertyForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const files = document.getElementById("mediaFiles").files;
+  const urls = await uploadFilesAndGetUrls(files);
+
+  const property = {
+    title: document.getElementById("title").value,
+    location: document.getElementById("location").value,
+    price: Number(document.getElementById("price").value),
+    sale_rent: document.getElementById("sale_rent").value,
+    property_type: document.getElementById("property_type").value,
+    details: document.getElementById("details").value,
+    images: urls.length ? urls : [],
+    created_by: user.id
+  };
+
+  const { data, error } = await supabase
+    .from("properties")
+    .insert(property)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Insert error:", error.message);
+    alert(error.message);
+    return;
+  }
+
+  alert("Property added successfully!");
+  e.target.reset();
+  loadProperties();
+});
+
+// 5️⃣ Initial load
+loadProperties();
+</script>
+
+</body>
+</html>

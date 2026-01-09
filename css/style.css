@@ -1,7 +1,7 @@
 :root {
   --primary: #0b3c5d;
   --secondary: #1d6fa5;
-  --accent: #ed1b24;
+  --accent: #c24352;
   --light: #a9d3ef;
   --dark: #1c1c1c;
   --max-width: 1200px;
@@ -378,10 +378,10 @@ footer span {
 }
 
 .contact-form {
-  background: #ffffff;
+  background: #fffafa;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.08);
   max-height: 1500px;
 }
 

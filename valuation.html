@@ -11,6 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/serviceStyle.css" />
+    <style>
+       .hidden {
+    display: none;
+  }
+    </style>
   </head>
 
   <body>
@@ -164,10 +169,29 @@
         </div>
       </div>
     </section>
-    <button id="toggleBtn">Our Previous Valuations</button>
 
+    <div style="text-align: center; margin: 40px 0">
+      <button
+        id="toggleValuationsBtn"
+        style="
+          background: #0a3d62;
+          color: #fff;
+          border: none;
+          padding: 14px 28px;
+          font-size: 16px;
+          border-radius: 8px;
+          cursor: pointer;
+        "
+      >
+        View Our Previous Valuations
+      </button>
+    </div>
 
-    <section style="background: #ffffff; padding: 50px 40px" id="valuationsSection" class="hidden">
+    <section
+      style="background: #ffffff; padding: 50px 40px"
+      id="valuationsSection"
+      class="hidden"
+    >
       <div style="max-width: 1200px; margin: auto">
         <h2
           style="
@@ -318,9 +342,6 @@
       </div>
     </section>
 
-    <div style="text-align: center; margin-top: 30px; margin-bottom: 30px">
-      <a href="services.html" class="btn">Back to Services</a>
-    </div>
     <!-- ================= CTA ================= -->
     <section class="cta">
       <div class="container">
@@ -334,6 +355,20 @@
       © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
       Rights Reserved
     </footer>
+<script>
+  const toggleBtn = document.getElementById("toggleValuationsBtn");
+  const valuationsSection = document.getElementById("valuationsSection");
+
+  toggleBtn.addEventListener("click", () => {
+    valuationsSection.classList.toggle("hidden");
+
+    toggleBtn.textContent = valuationsSection.classList.contains("hidden")
+      ? "View Our Previous Valuations"
+      : "Hide Valuations List";
+  });
+</script>
+
+
     <script src="js/main.js"></script>
   </body>
 </html>

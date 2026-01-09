@@ -1,17 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Shelter Nest Realty | Properties</title>
-    <link rel="icon" type="image/png" href="assets/favicon.ico" />
+<head>
+  <meta charset="UTF-8">
+  <title>Properties | Property Management</title>
+  <link rel="icon" type="image/png" href="assets/favicon.ico" />
     <meta
       name="description"
       content="Browse featured properties for sale and rent by Shelter Nest Realty"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #e9edf3);
+      margin: 0;
+      padding: 0px 25px;
+    }
+
+    h2.page-title {
+      color: #0a3d62;
+      text-align: center;
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6c757d;
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .property-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: all 0.35s ease;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .property-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 55px rgba(0,0,0,0.18);
+    }
+
+    /* Image slider */
+    .media-wrapper {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .media-track {
+      display: flex;
+      width: max-content;
+      animation: scrollMedia 18s linear infinite;
+    }
+
+    .media-track img,
+    .media-track video {
+      width: 320px;
+      height: 220px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .property-content {
+      padding: 18px 20px 22px;
+    }
+
+    .property-content h4 {
+      margin: 0;
+      color: #0a3d62;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .location {
+      margin: 6px 0 10px;
+      font-size: 14px;
+      color: #6c757d;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1e272e;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 20px;
+      background: #eef4fb;
+      color: #0a3d62;
+      margin-bottom: 12px;
+    }
+
+    .details {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    @keyframes scrollMedia {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
     <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="container">
@@ -126,68 +248,10 @@
       </nav>
     </div>
   </header>
-    <!-- ================= PROPERTY INTRO & SEARCH ================= -->
-    <section class="property-intro-section">
-      <div class="property-intro-container">
-        <h1>Find the Right Property</h1>
-        <p>
-          Explore our carefully selected residential and commercial properties
-          for sale and rent across prime locations in Nigeria.
-        </p>
+  <h2 class="page-title">All Properties</h2>
+  <div class="subtitle">Premium listings curated for modern living</div>
 
-        <!-- Search & Filter -->
-        <div class="property-search-box">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search by location or property name..."
-          />
-          <select id="typeFilter">
-            <option value="">All Property Types</option>
-            <option value="residential">Residential</option>
-            <option value="commercial">Commercial</option>
-            <option value="land">Land</option>
-          </select>
-
-          <select id="priceFilter">
-            <option value="">Any Price</option>
-            <option value="low">Below ₦50m</option>
-            <option value="mid">₦50m – ₦150m</option>
-            <option value="high">Above ₦150m</option>
-          </select>
-
-          <button onclick="filterProperties()">Search</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PROPERTIES SECTION ================= -->
-    <section class="property-page-section">
-      <div class="property-page-container">
-        <h2>Featured Properties</h2>
-
-        <section class="property-listing-section">
-          <div class="property-listing-container">
-            <div
-              id="listing-grid"
-              style="
-                max-width: 1200px;
-                margin: auto;
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 30px;
-              "
-            ></div>
-          </div>
-        </section>
-
-        <div style="text-align: center">
-          <a href="properties.html" class="btn">View All Properties</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FOOTER ================= -->
+  <div id="allProperties" class="properties-grid"></div>
     <footer>
       © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
       Rights Reserved
@@ -195,5 +259,69 @@
     <script src="js/script.js"></script>
     <script src="js/detail.js"></script>
     <script src="js/main.js"></script>
-  </body>
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+    const supabase = createClient(
+      "https://fcxeuhmgizpjzldaervh.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50"
+    );
+
+    async function loadAllProperties() {
+      try {
+        const { data: properties, error } = await supabase
+          .from("properties")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        if (!properties || properties.length === 0) {
+          document.getElementById("allProperties").innerHTML =
+            "<p style='text-align:center;color:#777'>No properties available.</p>";
+          return;
+        }
+
+        document.getElementById("allProperties").innerHTML = properties.map(p => {
+
+          const mediaHTML = (p.images || []).concat(p.images || []).map(url => {
+            if (url.endsWith(".mp4")) {
+              return `<video muted autoplay loop playsinline src="${url}"></video>`;
+            } else {
+              return `<img src="${url}" alt="${p.title}">`;
+            }
+          }).join("");
+
+          return `
+            <div class="property-card" onclick="window.location.href='property.html?id=${p.id}'">
+
+              <div class="media-wrapper">
+                <div class="media-track">
+                  ${mediaHTML}
+                </div>
+              </div>
+
+              <div class="property-content">
+                <h4>${p.title}</h4>
+                <div class="location">${p.location}</div>
+                <div class="price">₦${Number(p.price).toLocaleString()}</div>
+                <div class="badge">${p.property_type} · ${p.sale_rent}</div>
+                <div class="details">${p.details.substring(0, 90)}...</div>
+              </div>
+
+            </div>
+          `;
+        }).join("");
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById("allProperties").innerHTML =
+          "<p style='text-align:center;color:red'>Failed to load properties.</p>";
+      }
+    }
+
+    loadAllProperties();
+  </script>
+
+</body>
 </html>

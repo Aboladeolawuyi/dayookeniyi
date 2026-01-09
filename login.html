@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shelter Nest Realty Property Admin login</title>
+  <link rel="icon" type="image/png" href="assets/favicon.ico" />
+  <meta name="description"
+    content="Professional Estate Surveying, Valuation, Property Management and Real Estate Advisory Services in Nigeria" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+           <div class="brand">
+          <a href="index.html" class="logo-link">
+            <img src="assets/new_logo.jpg" alt="Shelter Nest Realty Logo" class="logo" />
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+          <!-- Home -->
+          <a href="index.html">Home</a>
+
+          <!-- ABOUT US DROPDOWN -->
+          <div class="nav-item dropdown" style="cursor: pointer;">
+            <a href="#" class="dropdown-toggle">
+              About Us <span class="arrow">▾</span>
+            </a>
+
+            <div class="dropdown-menu">
+              <a href="company-overview.html">Company Overview</a>
+              <a href="management-team.html">Management Team</a>
+              <a href="affiliations.html">Professional Affiliates</a>
+            </div>
+          </div>
+
+          <!-- SERVICES DROPDOWN -->
+          <div class="nav-item dropdown">
+            <a href="services.html" class="dropdown-toggle">
+              Services <span class="arrow">▾</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-wide">
+              <a href="valuation.html">Valuation for All Purposes</a>
+              <a href="propertymanagement.html">Property & Facility Management</a>
+              <a href="estateagency.html">Estate Agency</a>
+              <a href="feasibility.html">Feasibility & Viability Appraisal</a>
+              <a href="titlesearch.html">Title Search & Verification</a>
+              <a href="projectmanagement.html">Project Management</a>
+              <a href="propertymarketing.html">Property Marketing</a>
+              <a href="advisory.html">Real Estate Advisory Services</a>
+            </div>
+          </div>
+
+          <!-- Other Links -->
+          <a href="properties.html">Properties</a>
+          <a href="contact.html">Contact Us</a>
+          <!-- INSIGHTS MEGA MENU -->
+
+          <div class="nav-item mega-dropdown">
+            <a href="#" class="dropdown-toggle">
+              Insights <span class="arrow">▾</span>
+            </a>
+
+            <div class="mega-menu">
+
+
+
+              <!-- COLUMN 2 -->
+              <div class="mega-col webinar">
+                <h4>Our Socials</h4>
+
+                <div class="social-row">
+                  <a href="#"> <img src="assets/linkedin.jpg" alt="LinkedIn"> LinkedIn</a>
+                 <br>
+                  <a href="#"><img src="assets/ig.jpg" alt="Instagram">Instagram</a>
+                </div>
+              </div>
+
+              <!-- COLUMN 3 -->
+              <div class="mega-col webinar">
+                <h4>Podcast</h4>
+
+                <a href="https://www.youtube.com/watch?v=1oDmcjf4MO4&t">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  How Property Development is Transforming Nigerian Neighborhoods
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=9yST5KGYSmE">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Smart Investment Strategies: Maximizing Returns in Lagos Real Estate
+                </a>
+
+                <a href="#">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Rising property prices and rental yields: What’s driving the Nigerian Real Estate boom?
+                </a>
+
+                <a href="#">
+                  <img src="assets/youtube.png" alt="YouTube">
+                  Real Estate Playbook
+                </a>
+
+                <a href="https://www.youtube.com/@shelternestrealty" class="see-more">See more →</a>
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </nav>
+    </div>
+  </header>
+<div style="
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f4f6f9;
+  font-family:'Segoe UI', Arial, sans-serif;
+">
+
+  <div style="
+    width:100%;
+    max-width:420px;
+    background:#ffffff;
+    padding:35px 30px;
+    border-radius:14px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.1);
+  ">
+
+    <h1 style="
+      margin:0 0 10px 0;
+      text-align:center;
+      color:#0a3d62;
+      font-size:26px;
+      font-weight:700;
+    ">
+      Admin Login
+    </h1>
+
+    <p style="
+      text-align:center;
+      color:#6c757d;
+      font-size:14px;
+      margin-bottom:25px;
+    ">
+      Sign in to access your dashboard
+    </p>
+
+    <form id="loginForm" style="display:flex; flex-direction:column; gap:15px;">
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email Address"
+        required
+        style="
+          padding:14px;
+          font-size:15px;
+          border-radius:8px;
+          border:1px solid #dcdde1;
+          outline:none;
+        "
+        onfocus="this.style.borderColor='#0a3d62'"
+        onblur="this.style.borderColor='#dcdde1'"
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        required
+        style="
+          padding:14px;
+          font-size:15px;
+          border-radius:8px;
+          border:1px solid #dcdde1;
+          outline:none;
+        "
+        onfocus="this.style.borderColor='#0a3d62'"
+        onblur="this.style.borderColor='#dcdde1'"
+      >
+
+      <button
+        type="submit"
+        style="
+          margin-top:10px;
+          padding:14px;
+          background:#0a3d62;
+          color:#ffffff;
+          border:none;
+          border-radius:10px;
+          font-size:16px;
+          font-weight:600;
+          cursor:pointer;
+        "
+        onmouseover="this.style.background='#09508b'"
+        onmouseout="this.style.background='#0a3d62'"
+      >
+        Login
+      </button>
+
+    </form>
+
+    <p style="
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+      color:#6c757d;
+    ">
+      Don’t have an account?
+      <a href="signup.html" style="
+        color:#0a3d62;
+        font-weight:600;
+        text-decoration:none;
+      ">Sign Up</a>
+    </p>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// ✅ Replace with your correct Supabase URL and anon/public key
+const supabase = createClient(
+  "https://fcxeuhmgizpjzldaervh.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50"
+);
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    // ✅ Correct v2 browser method
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) throw error;
+
+    alert("Login successful!");
+    window.location.href = "dashboard.html";
+  } catch (err) {
+    alert(err.message);
+  }
+});
+</script>
+  <footer>
+    © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
+    Rights Reserved
+  </footer>
+  <!-- <script>
+      const properties = [
+        {
+          id: 1,
+          title: "Luxury Family Home",
+          location: "Lekki, Lagos",
+          price: "₦120,000,000",
+          details: "4 Beds • 3 Baths • Parking",
+          images: [
+            "https://picsum.photos/600/400?1",
+            "https://picsum.photos/600/400?2",
+            "https://picsum.photos/600/400?3",
+          ],
+        },
+        {
+          id: 2,
+          title: "Modern Apartment",
+          location: "Ikoyi, Lagos",
+          price: "₦85,000,000",
+          details: "3 Beds • 2 Baths • Elevator",
+          images: [
+            "https://picsum.photos/600/400?4",
+            "https://picsum.photos/600/400?5",
+            "https://picsum.photos/600/400?6",
+          ],
+        },
+      ];
+
+      const grid = document.getElementById("listing-grid");
+
+      properties.forEach((prop) => {
+        const card = document.createElement("div");
+
+        card.style.cssText = `
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:all 0.3s ease;
+  `;
+
+        card.onmouseover = () => {
+          card.style.transform = "translateY(-8px)";
+          card.style.boxShadow = "0 25px 45px rgba(0,0,0,0.2)";
+        };
+        card.onmouseout = () => {
+          card.style.transform = "none";
+          card.style.boxShadow = "0 15px 35px rgba(0,0,0,0.1)";
+        };
+
+        let imgIndex = 0;
+
+        const img = document.createElement("img");
+        img.src = prop.images[0];
+        img.style.cssText = `
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    transition:opacity 0.5s;
+  `;
+
+        setInterval(() => {
+          imgIndex = (imgIndex + 1) % prop.images.length;
+          img.src = prop.images[imgIndex];
+        }, 2500);
+
+        const info = document.createElement("div");
+        info.style.padding = "18px";
+
+        info.innerHTML = `
+    <h3 style="margin:0 0 6px">${prop.title}</h3>
+    <div style="color:#777;font-size:14px">${prop.location}</div>
+    <div style="color:#0a3d62;font-weight:bold;margin:10px 0">${prop.price}</div>
+    <div style="font-size:13px;color:#555">${prop.details}</div>
+  `;
+
+        card.appendChild(img);
+        card.appendChild(info);
+
+        card.onclick = () => {
+          localStorage.setItem("selectedProperty", JSON.stringify(prop));
+          location.href = "property.html";
+        };
+
+        grid.appendChild(card);
+      });
+    </script> -->
+
+  <script src="js/script.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
