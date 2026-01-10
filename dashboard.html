@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard | Property Management</title>
-    <link rel="icon" type="image/png" href="assets/favicon.ico" />
-  <meta name="description"
-    content="Professional Estate Surveying, Valuation, Property Management and Real Estate Advisory Services in Nigeria" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
- <style>
+  <style>
   :root {
     --primary: #0a3d62;
     --primary-light: #0d5ea6;
-
-  } 
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --text: #1e272e;
+    --muted: #6c757d;
+    --radius: 12px;
+  }
 
   * {
     box-sizing: border-box;
@@ -23,7 +22,7 @@
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
     background: var(--bg);
     margin: 0;
-    padding: 0px 20px;
+    padding: 30px 20px;
     color: var(--text);
   }
 
@@ -170,11 +169,258 @@
     border-radius: 8px;
     margin-top: 10px;
   }
+  .delete-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+.site-header {
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.site-header .container {
+  max-width: 1250px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+}
+
+/* ---------- BRAND ---------- */
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+}
+
+/* ---------- NAV LINKS ---------- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #1e272e;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* underline hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ---------- DROPDOWN ---------- */
+.nav-item {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.arrow {
+  font-size: 12px;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 130%;
+  left: 0;
+  background: #ffffff;
+  min-width: 220px;
+  padding: 10px 0;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 14px;
+  color: #1e272e;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(10, 61, 98, 0.08);
+  color: var(--primary);
+}
+
+/* ---------- MEGA MENU ---------- */
+.mega-dropdown {
+  position: relative;
+}
+
+.mega-menu {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #ffffff;
+  width: 600px;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+}
+
+.mega-dropdown:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.mega-col h4 {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.mega-col a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 13.5px;
+  color: #1e272e;
+}
+
+.mega-col a img {
+  width: 18px;
+  height: 18px;
+}
+
+.mega-col a:hover {
+  color: var(--primary);
+}
+
+/* ---------- HAMBURGER ---------- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 75px;
+    right: -100%;
+    width: 260px;
+    height: calc(100vh - 75px);
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+    gap: 18px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    transition: right 0.3s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .dropdown-menu,
+  .mega-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .dropdown-menu a {
+    padding-left: 10px;
+  }
+}
 </style>
 
 </head>
 
-<body>
+<body style="display:none;">
       <header class="site-header">
     <div class="container">
       <nav class="navbar">
@@ -346,15 +592,11 @@
 
   <hr>
 
-  <!-- <div id="myProperties" class="properties-grid"></div> -->
+  <div id="myProperties" class="properties-grid"></div>
 
 </div>
-  <footer>
-    © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
-    Rights Reserved
-  </footer>
-  <script src="js/script.js"></script>
-  <script src="js/main.js"></script>
+ <script src="js/main.js"></script>
+
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
@@ -365,13 +607,17 @@ const supabase = createClient(
 );
 
 // 1️⃣ Get logged-in user
-const { data: { session } } = await supabase.auth.getSession();
-if (!session) window.location.href = "login.html";
-const user = session.user;
+const { data, error } = await supabase.auth.getSession();
 
+if (error || !data.session) {
+  window.location.replace("login.html");
+  throw new Error("Unauthenticated access blocked");
+}
 // Redirect on logout/session expiration
-supabase.auth.onAuthStateChange((event, newSession) => {
-  if (!newSession) window.location.href = "login.html";
+supabase.auth.onAuthStateChange((_event, session) => {
+  if (!session) {
+    window.location.replace("login.html");
+  }
 });
 
 // 2️⃣ Load properties created by the logged-in user
@@ -391,24 +637,46 @@ async function loadProperties() {
     }
 
     document.getElementById("myProperties").innerHTML = properties.map(p => {
-      const mediaHTML = (p.images || []).map(url => {
-        if (url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg")) {
-          return `<video controls><source src="${url}" type="video/mp4"></video>`;
-        } else {
-          return `<img src="${url}" alt="${p.title}" />`;
-        }
-      }).join("");
+     let mediaHTML = "";
 
-      return `
-        <div class="property-card">
-          <h4>${p.title}</h4>
-          <p>${p.location}</p>
-          <strong>₦${Number(p.price).toLocaleString()}</strong>
-          <p>${p.sale_rent} | ${p.property_type}</p>
-          <div class="media">${mediaHTML}</div>
-          <p>${p.details}</p>
-        </div>
-      `;
+if (p.images && p.images.length > 0) {
+  const url = p.images[0];
+
+  if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    mediaHTML = `
+      <video controls>
+        <source src="${url}" type="video/mp4">
+      </video>
+    `;
+  } else {
+    mediaHTML = `
+      <img src="${url}" alt="${p.title}">
+    `;
+  }
+} else {
+  mediaHTML = `
+    <div style="height:180px;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:8px;color:#777;">
+      No Image
+    </div>
+  `;
+}
+
+   return `
+  <div class="property-card">
+    <h4>${p.title}</h4>
+    <p>${p.location}</p>
+    <strong>₦${Number(p.price).toLocaleString()}</strong>
+    <p>${p.sale_rent} | ${p.property_type}</p>
+    <div class="media">${mediaHTML}</div>
+        <button 
+      class="delete-btn" 
+      data-id="${p.id}"
+      data-images='${JSON.stringify(p.images || [])}'>
+      Delete Property
+    </button>
+  </div>
+`;
+
     }).join("");
 
   } catch (err) {
@@ -416,6 +684,8 @@ async function loadProperties() {
     document.getElementById("myProperties").innerHTML = "<p>Error loading properties. Check console.</p>";
   }
 }
+document.body.style.display = "block";
+const user = data.session.user;
 
 // 3️⃣ Upload files to storage and get public URLs
 async function uploadFilesAndGetUrls(files) {
@@ -479,9 +749,51 @@ document.getElementById("propertyForm").addEventListener("submit", async (e) => 
   e.target.reset();
   loadProperties();
 });
+async function deleteProperty(propertyId, images = []) {
+  const confirmDelete = confirm("Are you sure you want to delete this property?");
+  if (!confirmDelete) return;
+
+  // 1️⃣ Delete property record
+  const { error } = await supabase
+    .from("properties")
+    .delete()
+    .eq("id", propertyId)
+    .eq("created_by", user.id);
+
+  if (error) {
+    alert("Failed to delete property");
+    console.error(error.message);
+    return;
+  }
+
+  // 2️⃣ OPTIONAL: delete images from storage
+  if (images.length > 0) {
+    const paths = images.map(url => url.split("/properties/")[1]).filter(Boolean);
+    if (paths.length) {
+      await supabase.storage.from("properties").remove(paths);
+    }
+  }
+
+  alert("Property deleted successfully");
+  loadProperties();
+}
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    const id = e.target.dataset.id;
+    const images = JSON.parse(e.target.dataset.images || "[]");
+    deleteProperty(id, images);
+  }
+});
 
 // 5️⃣ Initial load
 loadProperties();
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
 </script>
 
 </body>
