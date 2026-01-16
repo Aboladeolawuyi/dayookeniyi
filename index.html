@@ -1,444 +1,620 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Database password for Shelternest on Supabase is ==== 'Shelter Nest Realty Properties' -->
+  <!-- Database password for Shelternest on Supabase is ==== 'Shelter Nest Realty Properties' -->
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Shelter Nest Realty | Estate Surveyors & Valuers</title>
-  <link rel="icon" type="image/png" href="assets/favicon.ico" />
-  <meta name="description"
-    content="Professional Estate Surveying, Valuation, Property Management and Real Estate Advisory Services in Nigeria" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shelter Nest Realty | Estate Surveyors & Valuers</title>
+    <link rel="icon" type="image/png" href="assets/favicon.ico" />
+    <meta
+      name="description"
+      content="Professional Estate Surveying, Valuation, Property Management and Real Estate Advisory Services in Nigeria"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .home-affiliations {
+        padding: 60px 0;
+        background-color: #f9fafb;
+      }
 
-<body>
-  <!-- ================= HEADER ================= -->
-  <header class="site-header">
-    <div class="container">
-      <nav class="navbar">
-        <div class="brand">
-          <a href="index.html" class="logo-link">
-            <img src="assets/new_logo.jpg" alt="Shelter Nest Realty Logo" class="logo" />
-          </a>
-        </div>
+      .affiliations-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
 
-        <!-- Hamburger -->
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+      .affiliations-text {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        color: #555;
+        line-height: 1.6;
+      }
 
-        <div class="nav-links" id="navLinks">
+      .affiliations-logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap; /* allows clean wrapping on smaller screens */
+      }
 
-          <!-- Home -->
-          <a href="index.html">Home</a>
+      .affiliations-logos img {
+        max-height: 60px;
+        width: auto;
 
-          <!-- ABOUT US DROPDOWN -->
-          <div class="nav-item dropdown" style="cursor: pointer;">
-            <a href="#" class="dropdown-toggle">
-              About Us <span class="arrow">▾</span>
+        transition: all 0.3s ease;
+      }
+
+      .affiliations-logos img:hover {
+        transform: scale(1.5);
+      }
+
+      /* Mobile Optimization */
+      @media (max-width: 768px) {
+        .affiliations-logos {
+          gap: 30px;
+        }
+
+        .affiliations-logos img {
+          max-height: 50px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <div class="container">
+        <nav class="navbar">
+          <div class="brand">
+            <a href="index.html" class="logo-link">
+              <img
+                src="assets/new_logo.jpg"
+                alt="Shelter Nest Realty Logo"
+                class="logo"
+              />
             </a>
-
-            <div class="dropdown-menu">
-              <a href="company-overview.html">Company Overview</a>
-              <a href="management-team.html">Management Team</a>
-              <a href="affiliations.html">Professional Affiliates</a>
-            </div>
           </div>
 
-          <!-- SERVICES DROPDOWN -->
-          <div class="nav-item dropdown">
-            <a href="services.html" class="dropdown-toggle">
-              Services <span class="arrow">▾</span>
-            </a>
+          <!-- Hamburger -->
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
-            <div class="dropdown-menu dropdown-wide">
-              <a href="valuation.html">Valuation for All Purposes</a>
-              <a href="propertymanagement.html">Property & Facility Management</a>
-              <a href="estateagency.html">Estate Agency</a>
-              <a href="feasibility.html">Feasibility & Viability Appraisal</a>
-              <a href="titlesearch.html">Title Search & Verification</a>
-              <a href="projectmanagement.html">Project Management</a>
-              <a href="propertymarketing.html">Property Marketing</a>
-              <a href="advisory.html">Real Estate Advisory Services</a>
+          <div class="nav-links" id="navLinks">
+            <!-- Home -->
+            <a href="index.html">Home</a>
+
+            <!-- ABOUT US DROPDOWN -->
+            <div class="nav-item dropdown" style="cursor: pointer">
+              <a href="#" class="dropdown-toggle">
+                About Us <span class="arrow">▾</span>
+              </a>
+
+              <div class="dropdown-menu">
+                <a href="company-overview.html">Company Overview</a>
+                <a href="management-team.html">Management Team</a>
+                <a href="affiliations.html">Professional Affiliates</a>
+              </div>
             </div>
-          </div>
 
-          <!-- Other Links -->
-          <a href="properties.html">Properties</a>
-          <a href="contact.html">Contact Us</a>
-          <!-- INSIGHTS MEGA MENU -->
+            <!-- SERVICES DROPDOWN -->
+            <div class="nav-item dropdown">
+              <a href="services.html" class="dropdown-toggle">
+                Services <span class="arrow">▾</span>
+              </a>
 
-          <div class="nav-item mega-dropdown">
-            <a href="#" class="dropdown-toggle">
-              Insights <span class="arrow">▾</span>
-            </a>
+              <div class="dropdown-menu dropdown-wide">
+                <a href="valuation.html">Valuation for All Purposes</a>
+                <a href="propertymanagement.html"
+                  >Property & Facility Management</a
+                >
+                <a href="estateagency.html">Estate Agency</a>
+                <a href="feasibility.html">Feasibility & Viability Appraisal</a>
+                <a href="titlesearch.html">Title Search & Verification</a>
+                <a href="projectmanagement.html">Project Management</a>
+                <a href="propertymarketing.html">Property Marketing</a>
+                <a href="advisory.html">Real Estate Advisory Services</a>
+              </div>
+            </div>
 
-            <div class="mega-menu">
+            <!-- Other Links -->
+            <a href="properties.html">Properties</a>
+            <a href="contact.html">Contact Us</a>
+            <!-- INSIGHTS MEGA MENU -->
 
+            <div class="nav-item mega-dropdown">
+              <a href="#" class="dropdown-toggle">
+                Insights <span class="arrow">▾</span>
+              </a>
 
+              <div class="mega-menu insights-dropdown">
+                <!-- LEFT MENU -->
+                <div class="insights-tabs">
+                  <button class="tab-btn active" data-tab="newsletter">
+                    Newsletter
+                  </button>
+                  <button class="tab-btn" data-tab="podcast">Podcast</button>
+                  <button class="tab-btn" data-tab="social">
+                    Connect with us
+                  </button>
+                </div>
 
-              <!-- COLUMN 2 -->
-              <div class="mega-col webinar">
-                <h4>Our Socials</h4>
+                <!-- RIGHT CONTENT -->
+                <div class="insights-content">
+                  <!-- NEWSLETTER (LINKEDIN) -->
+                  <div class="tab-content active" id="newsletter">
+                    <div style="text-align: center;"><h4>The Real Estate Review</h4>
+                    <p style="font-size: 1px">
+                      Get expert insights you need to stay ahead in real estate.
+                    </p></div>
+                    
+                    <a
+                      href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Who Really Pays for Demolitions?</h5>
+                      <p style="font-size: 1px">
+                        Should homeowners be punished for regulatory failures
+                        they did not cause? One of the most painful aspects of
+                        this crisis is the displacement of ordinary citizens who
+                        purchased homes believing them to be legally compliant.
+                        Consider this scenario; A young family bought....
+                      </p>
+                    </a>
 
-                <div class="social-row">
-                  <a href="#"> <img src="assets/linkedin.jpg" alt="LinkedIn"> LinkedIn</a>
-                  <br>
-                  <a href="#"><img src="assets/ig.jpg" alt="Instagram">Instagram</a>
+                    <a
+                      href="https://www.linkedin.com/pulse/who-really-pays-demolitions-hard-questions-lagos-must-xyv1e/?trackingId=T4fwDwZ%2FTw%2BAroIXrT1img%3D%3D"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>
+                        The Mortgage System in Nigeria’s Real Estate Sector
+                      </h5>
+                      <p style="font-size: 1px">
+                        The mortgage system is the cornerstone of real estate
+                        financing worldwide, providing individuals and
+                        businesses with access to long-term credit for property
+                        acquisition. In advanced economies, such as the United
+                        States, United Kingdom, and Canada, well-structured ...
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720/"
+                      target="_blank"
+                      class="see-more"
+                    >
+                      View more on LinkedIn →
+                    </a>
+                  </div>
+
+                  <!-- PODCAST (YOUTUBE) -->
+                  <div class="tab-content" id="podcast">
+                    <a
+                      href="https://www.youtube.com/watch?v=1oDmcjf4MO4"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Transforming Nigerian Neighborhoods</h5>
+                      <p>
+                        How modern property development is reshaping urban
+                        communities…
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=9yST5KGYSmE"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Smart Investment Strategies</h5>
+                      <p>
+                        Maximizing returns in Lagos’ evolving real estate
+                        market…
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/@shelternestrealty"
+                      target="_blank"
+                      class="see-more"
+                    >
+                      Visit YouTube Channel →
+                    </a>
+                  </div>
+                 <div class="tab-content" id="social">
+  <div class="social-icons">
+
+    <a href="https://www.linkedin.com/in/esvoladayookeniyi/"
+       target="_blank"
+       aria-label="LinkedIn"
+       class="social-icon linkedin">
+      <img src="assets/linkedin.jpg" alt="LinkedIn">
+    </a>
+
+    <a href="#"
+       target="_blank"
+       aria-label="Facebook"
+       class="social-icon facebook">
+      <img src="assets/facebook.png" alt="Facebook">
+    </a>
+
+    <a href="#"
+       target="_blank"
+       aria-label="Instagram"
+       class="social-icon instagram">
+      <img src="assets/ig.jpg" alt="Instagram">
+    </a>
+
+  </div>
+</div>
+
                 </div>
               </div>
-
-              <!-- COLUMN 3 -->
-              <div class="mega-col webinar">
-                <h4>Podcast</h4>
-
-                <a href="https://www.youtube.com/watch?v=1oDmcjf4MO4&t">
-                  <img src="assets/youtube.png" alt="YouTube">
-                  How Property Development is Transforming Nigerian Neighborhoods
-                </a>
-
-                <a href="https://www.youtube.com/watch?v=9yST5KGYSmE">
-                  <img src="assets/youtube.png" alt="YouTube">
-                  Smart Investment Strategies: Maximizing Returns in Lagos Real Estate
-                </a>
-
-                <a href="#">
-                  <img src="assets/youtube.png" alt="YouTube">
-                  Rising property prices and rental yields: What’s driving the Nigerian Real Estate boom?
-                </a>
-
-                <a href="#">
-                  <img src="assets/youtube.png" alt="YouTube">
-                  Real Estate Playbook
-                </a>
-
-                <a href="https://www.youtube.com/@shelternestrealty" class="see-more">See more →</a>
-              </div>
-
-
             </div>
           </div>
-
-
-        </div>
-      </nav>
-    </div>
-  </header>
-
-
-  <!-- ================= HERO SLIDER ================= -->
-  <section class="hero-slider">
-    <div class="slide active" style="background-image: url('assets/shelternest.png')"></div>
-    <div class="slide" style="background-image: url('assets/hero1.jpeg')"></div>
-    <div class="slide" style="background-image: url('assets/hero4.jpg')"></div>
-    <div class="slide" style="background-image: url('assets/dayookeniyi2.png')"></div>
-    <div class="slide" style="background-image: url('assets/hero2.jpg')"></div>
-
-    <div class="hero-overlay">
-      <h1>Integrity • Expertise • Excellence</h1>
-      <p>
-        Professional Estate Surveyors, Valuers & Real Estate Advisors
-        delivering trusted property solutions across Nigeria.
-      </p>
-      <a href="services.html" class="btn">Explore Our Services</a>
-    </div>
-  </section>
-
-  <!-- ================= ABOUT SNAPSHOT ================= -->
-  <section class="section light-bg">
-    <div class="container split">
-      <div>
-        <h2>Who We Are</h2>
-        <p>
-          <strong>DAYO OKENIYI & CO.</strong>, is a professional firm of Estate Surveyors, Valuers and Facilities Management duly
-          registered with Corporate Affairs Commission under the Companies and Allied Matters Act of Nigeria (CAMA), a
-          corporate member of the Nigerian Institution of Estate Surveyors and Valuers (NIESV), as well as the Estate
-          Surveyors and Valuers Registration Board of Nigeria (ESVARBON) to practice and provide real estate services in
-          nationwide. Our sister company, <strong>SHELTER NEST REALTY LLC,</strong> is a premier real estate firm specializing in
-          innovative property development, real estate agency services, and high-impact market positioning.
-        </p>
-        <p>
-          We provide comprehensive real estate solutions to individuals,
-          corporate organizations, government institutions and investors,
-          guided by professionalism, transparency and measurable value
-          delivery.
-        </p>
-        <a href="about.html" class="btn-outline">Learn More About Us</a>
+        </nav>
       </div>
-      <div class="highlight-box">
-        <h3>Registered & Accredited</h3>
-        <ul class="accreditation-list">
-          <li>
-            <img src="assets/cac-logo.png" alt="CAC Logo" />
-            <span>Corporate Affairs Commission (CAC)</span>
-          </li>
+    </header>
 
-          <li>
-            <img src="assets/affiliations/niesv.png" alt="NIESV Logo" />
-            <span>Nigerian Institution of Estate Surveyors & Valuers (NIESV)</span>
-          </li>
-
-          <li>
-            <img src="assets/affiliations/esvabon.jpg" alt="ESVARBON Logo" />
-            <span>Estate Surveyors & Valuers Registration Board (ESVARBON)</span>
-          </li>
-        </ul>
+    <!-- ================= HERO SLIDER ================= -->
+    <section class="hero-slider">
+      <!-- SLIDE 1: Properties -->
+      <div
+        class="slide active"
+        style="background-image: url('assets/comp.jpeg')"
+      >
+        <div class="slide-content">
+          <h1>Discover Premium Properties</h1>
+          <p>
+            Browse residential, commercial, and luxury properties across
+            Nigeria.
+          </p>
+          <a href="properties.html" class="btn">View Properties</a>
+        </div>
       </div>
 
-    </div>
-  </section>
+      <!-- SLIDE 2: Services -->
+      <div class="slide" style="background-image: url('assets/comp3.jpeg')">
+        <div class="slide-content">
+          <h1>Expert Real Estate Services</h1>
+          <p>
+            Professional valuation, agency, advisory, and project management
+            solutions.
+          </p>
+          <a href="services.html" class="btn">Explore Services</a>
+        </div>
+      </div>
 
-  <section class="section">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 20px">
-        Our Core Professional Services
-      </h2>
+      <!-- SLIDE 3: Contact -->
+      <div class="slide" style="background-image: url('assets/hero4.jpg')">
+        <div class="slide-content">
+          <h1>Get In Touch</h1>
+          <p>
+            Contact us for tailored solutions and expert advice on real estate
+            matters.
+          </p>
+          <a href="contact.html" class="btn">Contact Us</a>
+        </div>
+      </div>
 
-      <div class="grid services-grid">
-        <!-- Valuation -->
-        <div class="service-item">
-          <div class="service-header">
-            <a href="valuation.html">
-              <img src="assets/services/valuation.jpg" alt="Valuation Service" class="service-image" />
-            </a>
+      <!-- SLIDE 4: Affiliations -->
+      <div class="slide" style="background-image: url('assets/comp2.jpeg')">
+        <div class="slide-content">
+          <h1>Trusted Professional Affiliations</h1>
+          <p>
+            Partnered with NIESV, ESVARBON, RICS and other leading institutions.
+          </p>
+          <a href="affiliations.html" class="btn">View Affiliations</a>
+        </div>
+      </div>
 
-            <button class="service-summary">
-              Valuation for All Purposes
-            </button>
-          </div>
+      <!-- SLIDER NAVIGATION -->
+      <div class="slider-nav">
+        <span class="nav-dot active" data-slide="0"></span>
+        <span class="nav-dot" data-slide="1"></span>
+        <span class="nav-dot" data-slide="2"></span>
+        <span class="nav-dot" data-slide="3"></span>
+      </div>
+    </section>
 
-          <div class="service-content">
+    <!-- ================= ABOUT SNAPSHOT ================= -->
+    <section class="section light-bg">
+      <div class="container split who-we-are">
+        <!-- LEFT: TEXT CONTENT -->
+        <div class="who-text">
+          <h2>Who We Are</h2>
+          <p>
+            <strong>DAYO OKENIYI & CO.</strong> is a professional firm of Estate
+            Surveyors, Valuers and Facilities Management duly registered with
+            the Corporate Affairs Commission (CAC) under the Companies and
+            Allied Matters Act of Nigeria (CAMA). The firm is a corporate member
+            of the Nigerian Institution of Estate Surveyors and Valuers (NIESV)
+            and registered with the Estate Surveyors and Valuers Registration
+            Board of Nigeria (ESVARBON) to practice nationwide.
+          </p>
 
-            <a href="valuation.html" style="text-decoration: none;">
-              <h4>Valuation for All Purposes</h4>
+          <p>
+            Our sister company, <strong>SHELTER NEST REALTY LLC</strong>, is a
+            premier real estate firm specializing in innovative property
+            development, real estate agency services, and high-impact market
+            positioning.
+          </p>
 
-              <p>
-                Mortgage, insurance, compensation, merger and acquisition,
-                taxation, financial reporting and asset valuation in line with
-                professional and international standards.
-              </p>
-            </a>
-          </div>
+          <p>
+            We provide comprehensive real estate solutions to individuals,
+            corporate organizations, government institutions, and
+            investors—guided by professionalism, transparency, and measurable
+            value delivery.
+          </p>
+
+          <a href="company-overview.html" class="btn-outline"
+            >Learn More About Us</a
+          >
         </div>
 
-        <!-- Property & Facility Management -->
-        <div class="service-item">
-          <div class="service-header">
-            <a href="propertymanagement.html">
-              <img src="assets/services/hero1.jpeg" alt="Property & Facility Management" class="service-image" />
-            </a>
+        <!-- RIGHT: IMAGE -->
+        <div class="who-image">
+          <img src="assets//who-we-are.jpeg" alt="Dayo Okeniyi & Co Office" />
+        </div>
+      </div>
+    </section>
 
-            <button class="service-summary">
-              Property & Facility Management
-            </button>
-          </div>
+    <!-- ==============OUR CORE SERVICES=============== -->
+    <section class="section services-showcase">
+      <div class="container">
+        <h2 class="section-title">Our Core Professional Services</h2>
 
-          <div class="service-content">
-            <h4>Property & Facility Management</h4>
+        <!-- SERVICE 1 -->
+        <div class="service-row">
+          <div class="service-text">
+            <h3>Valuation for All Purposes</h3>
             <p>
-              End-to-end management of residential, commercial and industrial
-              properties including rent collection, maintenance planning,
-              tenant relations and performance reporting.
+              Mortgage, insurance, compensation, merger and acquisition,
+              taxation, financial reporting and asset valuation services
+              delivered in line with professional and international standards.
             </p>
+            <a href="valuation.html" class="btn">Learn More</a>
+          </div>
+
+          <div class="service-image">
+            <img src="assets/services/valuation.jpg" alt="Valuation Service" />
           </div>
         </div>
 
-        <!-- Estate Agency -->
-        <div class="service-item">
-          <div class="service-header">
-            <a href="estateagency.html">
-              <img src="assets/services/estate-agency.jpg" alt="Estate Agency" class="service-image" />
-            </a>
-
-            <button class="service-summary">Estate Agency</button>
+        <!-- SERVICE 2 -->
+        <div class="service-row reverse">
+          <div class="service-text">
+            <h3>Property & Facility Management</h3>
+            <p>
+              Comprehensive management of residential, commercial and industrial
+              properties including rent collection, maintenance planning, tenant
+              relations and performance reporting.
+            </p>
+            <a href="propertymanagement.html" class="btn">Learn More</a>
           </div>
 
-          <div class="service-content">
-            <h4>Estate Agency</h4>
+          <div class="service-image">
+            <img src="assets/services/hero1.jpeg" alt="Property Management" />
+          </div>
+        </div>
+
+        <!-- SERVICE 3 -->
+        <div class="service-row">
+          <div class="service-text">
+            <h3>Estate Agency</h3>
             <p>
               Professional sales, letting, brokerage, marketing and disposal
               services for residential, commercial and industrial real estate.
             </p>
-          </div>
-        </div>
-
-        <!-- Feasibility -->
-        <div class="service-item">
-          <div class="service-header">
-            <a href="feasibility.html">
-              <img src="assets/services/feasibility.webp" alt="Feasibility & Viability Appraisal"
-                class="service-image" />
-            </a>
-
-            <button class="service-summary">
-              Feasibility & Viability Appraisal
-            </button>
+            <a href="estateagency.html" class="btn">Learn More</a>
           </div>
 
-          <div class="service-content">
-            <h4>Feasibility & Viability Appraisal</h4>
-            <p>
-              Market research, highest and best use analysis, financial
-              modelling and investment decision support for property
-              development.
-            </p>
-          </div>
-        </div>
-        <div></div>
-        <!-- Title Search -->
-        <div class="service-item">
-          <div class="service-header">
-            <a href="titlesearch.html">
-              <img src="assets/services/title-search.jpg" alt="Title Search & Verification" class="service-image" />
-            </a>
-
-            <button class="service-summary">
-              Title Search & Verification
-            </button>
-          </div>
-
-          <div class="service-content">
-            <h4>Title Search & Verification</h4>
-            <p>
-              Comprehensive title investigation, land registry searches,
-              document verification and due diligence advisory.
-            </p>
-          </div>
-        </div>
-
-        <!-- Project Management -->
-        <div class="service-item">
-          <div class="service-header">
-            <a href="projectmanagement.html">
-              <img src="assets/services/project-management.webp" alt="Project Management" class="service-image" />
-            </a>
-
-            <button class="service-summary">Project Management</button>
-          </div>
-
-          <div class="service-content">
-            <h4>Project Management</h4>
-            <p>
-              Coordination of consultants and contractors, cost control,
-              scheduling, supervision and delivery of real estate development
-              projects.
-            </p>
+          <div class="service-image">
+            <img src="assets/services/estate-agency.jpg" alt="Estate Agency" />
           </div>
         </div>
       </div>
-      <p>
-      <div style="text-align: center; margin-top: 30px">
-        <a href="services.html" class="btn">View All Services</a>
-      </div>
-      </p>
+    </section>
 
-    </div>
-  </section>
-  <!-- 
-  <section class="property-listing-section">
-    <div class="property-listing-container">
-      <h2>Featured Properties</h2>
-      <div id="listing-grid" style="
-            max-width: 1200px;
-            margin: auto;
+    <!-- ================= WHY CHOOSE US ================= -->
+    <section
+      class="section light-bg"
+      style="padding: 60px 20px; background: #f9fafc"
+    >
+      <div
+        class="container"
+        style="max-width: 1200px; margin: auto; text-align: center"
+      >
+        <h2 style="font-size: 32px; color: #0b3c5d; margin-bottom: 40px">
+          Why Choose Shelter Nest Realty
+        </h2>
+
+        <div
+          class="grid"
+          style="
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-          "></div>
-    </div>
-  </section> -->
+          "
+        >
+          <div
+            class="card"
+            style="
+              background: #fff;
+              padding: 25px;
+              border-radius: 16px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+              transition: transform 0.3s, box-shadow 0.3s;
+            "
+            onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';"
+          >
+            <img
+              src="assets/integrity.jpg"
+              alt="Integrity"
+              style="width: 200px; margin-bottom: 15px"
+            />
+            <h4 style="color: #1d6fa5; margin-bottom: 10px">
+              Professional Integrity
+            </h4>
+            <p style="color: #555; line-height: 1.6">
+              We uphold the highest ethical standards in all client engagements.
+            </p>
+          </div>
 
+          <div
+            class="card"
+            style="
+              background: #fff;
+              padding: 25px;
+              border-radius: 16px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+              transition: transform 0.3s, box-shadow 0.3s;
+            "
+            onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';"
+          >
+            <img
+              src="assets/competence.jpg"
+              alt="Competence"
+              style="width: 200px; margin-bottom: 15px"
+            />
+            <h4 style="color: #1d6fa5; margin-bottom: 10px">
+              Technical Competence
+            </h4>
+            <p style="color: #555; line-height: 1.6">
+              Deep expertise across valuation, agency, advisory and project
+              delivery.
+            </p>
+          </div>
 
+          <div
+            class="card"
+            style="
+              background: #fff;
+              padding: 25px;
+              border-radius: 16px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+              transition: transform 0.3s, box-shadow 0.3s;
+            "
+            onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';"
+          >
+            <img
+              src="assets/client.jpg"
+              alt="Client"
+              style="width: 200px; margin-bottom: 15px"
+            />
+            <h4 style="color: #1d6fa5; margin-bottom: 10px">
+              Client-Centered Approach
+            </h4>
+            <p style="color: #555; line-height: 1.6">
+              Tailored solutions aligned with client objectives and market
+              realities.
+            </p>
+          </div>
 
-  <!-- ================= WHY CHOOSE US ================= -->
-  <section class="section light-bg" style="padding:60px 20px; background:#f9fafc;">
-    <div class="container" style="max-width:1200px; margin:auto; text-align:center;">
-      <h2 style="font-size:32px; color:#0b3c5d; margin-bottom:40px;">Why Choose Shelter Nest Realty</h2>
-
-      <div class="grid" style="
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-      gap:30px;
-    ">
-
-        <div class="card" style="
-        background:#fff;
-        padding:25px;
-        border-radius:16px;
-        box-shadow:0 10px 30px rgba(0,0,0,0.08);
-        transition:transform 0.3s, box-shadow 0.3s;
-      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-          <img src="assets/integrity.jpg" alt="Integrity" style="width:200px; margin-bottom:15px;">
-          <h4 style="color:#1d6fa5; margin-bottom:10px;">Professional Integrity</h4>
-          <p style="color:#555; line-height:1.6;">We uphold the highest ethical standards in all client engagements.</p>
+          <div
+            class="card"
+            style="
+              background: #fff;
+              padding: 25px;
+              border-radius: 16px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+              transition: transform 0.3s, box-shadow 0.3s;
+            "
+            onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';"
+          >
+            <img
+              src="assets/nationwide.svg"
+              alt="Nationwide"
+              style="width: 200px; margin-bottom: 15px"
+            />
+            <h4 style="color: #1d6fa5; margin-bottom: 10px">
+              Nationwide Reach
+            </h4>
+            <p style="color: #555; line-height: 1.6">
+              Operational presence in Lagos, Ibadan and across Nigeria.
+            </p>
+          </div>
         </div>
-
-        <div class="card" style="
-        background:#fff;
-        padding:25px;
-        border-radius:16px;
-        box-shadow:0 10px 30px rgba(0,0,0,0.08);
-        transition:transform 0.3s, box-shadow 0.3s;
-      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-          <img src="assets/competence.jpg" alt="Competence" style="width:200px; margin-bottom:15px;">
-          <h4 style="color:#1d6fa5; margin-bottom:10px;">Technical Competence</h4>
-          <p style="color:#555; line-height:1.6;">Deep expertise across valuation, agency, advisory and project
-            delivery.</p>
-        </div>
-
-        <div class="card" style="
-        background:#fff;
-        padding:25px;
-        border-radius:16px;
-        box-shadow:0 10px 30px rgba(0,0,0,0.08);
-        transition:transform 0.3s, box-shadow 0.3s;
-      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-          <img src="assets/client.jpg" alt="Client" style="width:200px; margin-bottom:15px;">
-          <h4 style="color:#1d6fa5; margin-bottom:10px;">Client-Centered Approach</h4>
-          <p style="color:#555; line-height:1.6;">Tailored solutions aligned with client objectives and market
-            realities.</p>
-        </div>
-
-        <div class="card" style="
-        background:#fff;
-        padding:25px;
-        border-radius:16px;
-        box-shadow:0 10px 30px rgba(0,0,0,0.08);
-        transition:transform 0.3s, box-shadow 0.3s;
-      " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-          <img src="assets/nationwide.svg" alt="Nationwide" style="width:200px; margin-bottom:15px;">
-          <h4 style="color:#1d6fa5; margin-bottom:10px;">Nationwide Reach</h4>
-          <p style="color:#555; line-height:1.6;">Operational presence in Lagos, Ibadan and across Nigeria.</p>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
+    <!-- =====================STATS========================= -->
+    <section class="section stats-section">
+      <div class="container">
+        <h2 class="center-title">Our Achievements</h2>
 
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="500">0</h3>
+            <p>Properties Sold</p>
+          </div>
 
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="120">0</h3>
+            <p>Professional Staff</p>
+          </div>
 
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="15">0</h3>
+            <p>Years of Experience</p>
+          </div>
 
-  <!-- ================= CALL TO ACTION ================= -->
-  <section class="cta">
-    <div class="container">
-      <h2>Let Us Help You Protect & Maximize Your Property Investments</h2>
-      <a href="contact.html" class="btn">Contact Us Today</a>
-    </div>
-  </section>
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="300">0</h3>
+            <p>Satisfied Clients</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
-    Rights Reserved
-  </footer>
-  <!-- <script>
+    <!-- ================= AFFILIATIONS LOGO STRIP ================= -->
+    <section class="home-affiliations">
+      <div class="container">
+        <h2 class="affiliations-title">Professional Affiliations</h2>
+        <p class="affiliations-text">
+          Our firm is affiliated with leading national and international
+          professional bodies. These partnerships reflect our commitment to
+          ethical standards, professional excellence, and global best practices
+          in real estate.
+        </p>
+
+        <div class="affiliations-logos">
+          <img src="assets/affiliations/niesv.png" alt="NIESV" />
+          <img src="assets/affiliations/esvabon.jpg" alt="ESVARBON" />
+          <img src="assets/affiliations/rics.jpeg" alt="RICS" />
+          <img src="assets/affiliations/fig.png" alt="FIG" />
+          <img src="assets/affiliations/ivsc.png" alt="IVSC" />
+          <img src="assets/affiliations/fiabci.jpg" alt="FIABCI" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CALL TO ACTION ================= -->
+    <section class="cta">
+      <div class="container">
+        <h2>Let Us Help You Protect & Maximize Your Property Investments</h2>
+        <a href="contact.html" class="btn">Contact Us Today</a>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
+      Rights Reserved
+    </footer>
+    <!-- <script>
       const properties = [
         {
           id: 1,
@@ -527,8 +703,7 @@
       });
     </script> -->
 
-  <script src="js/script.js"></script>
-  <script src="js/main.js"></script>
-</body>
-
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

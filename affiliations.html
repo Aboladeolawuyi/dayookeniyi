@@ -10,11 +10,23 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+    </style>
   </head>
 
   <body>
     <!-- ================= HEADER ================= -->
-    <header class="site-header">
+ <header class="site-header">
       <div class="container">
         <nav class="navbar">
           <div class="brand">
@@ -47,7 +59,7 @@
               <div class="dropdown-menu">
                 <a href="company-overview.html">Company Overview</a>
                 <a href="management-team.html">Management Team</a>
-                <a href="about.html">Professional Affiliates</a>
+                <a href="affiliations.html">Professional Affiliates</a>
               </div>
             </div>
 
@@ -81,55 +93,135 @@
                 Insights <span class="arrow">▾</span>
               </a>
 
-              <div class="mega-menu">
-                <!-- COLUMN 2 -->
-                <div class="mega-col webinar">
-                  <h4>Our Socials</h4>
-
-                  <div class="social-row">
-                    <a href="#">
-                      <img src="assets/linkedin.jpg" alt="LinkedIn" />
-                      LinkedIn</a
-                    >
-                    <br />
-                    <a href="#"
-                      ><img src="assets/ig.jpg" alt="Instagram" />Instagram</a
-                    >
-                  </div>
+              <div class="mega-menu insights-dropdown">
+                <!-- LEFT MENU -->
+                <div class="insights-tabs">
+                  <button class="tab-btn active" data-tab="newsletter">
+                    Newsletter
+                  </button>
+                  <button class="tab-btn" data-tab="podcast">Podcast</button>
+                  <button class="tab-btn" data-tab="social">
+                    Connect with us
+                  </button>
                 </div>
 
-                <!-- COLUMN 3 -->
-                <div class="mega-col webinar">
-                  <h4>Podcast</h4>
+                <!-- RIGHT CONTENT -->
+                <div class="insights-content">
+                  <!-- NEWSLETTER (LINKEDIN) -->
+                  <div class="tab-content active" id="newsletter">
+                    <div style="text-align: center">
+                      <h4>The Real Estate Review</h4>
+                      <p style="font-size: 1px">
+                        Get expert insights you need to stay ahead in real
+                        estate.
+                      </p>
+                    </div>
 
-                  <a href="https://www.youtube.com/watch?v=1oDmcjf4MO4&t">
-                    <img src="assets/youtube.png" alt="YouTube" />
-                    How Property Development is Transforming Nigerian
-                    Neighborhoods
-                  </a>
+                    <a
+                      href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Who Really Pays for Demolitions?</h5>
+                      <p style="font-size: 1px">
+                        Should homeowners be punished for regulatory failures
+                        they did not cause? One of the most painful aspects of
+                        this crisis is the displacement of ordinary citizens who
+                        purchased homes believing them to be legally compliant.
+                        Consider this scenario; A young family bought....
+                      </p>
+                    </a>
 
-                  <a href="https://www.youtube.com/watch?v=9yST5KGYSmE">
-                    <img src="assets/youtube.png" alt="YouTube" />
-                    Smart Investment Strategies: Maximizing Returns in Lagos
-                    Real Estate
-                  </a>
+                    <a
+                      href="https://www.linkedin.com/pulse/who-really-pays-demolitions-hard-questions-lagos-must-xyv1e/?trackingId=T4fwDwZ%2FTw%2BAroIXrT1img%3D%3D"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>
+                        The Mortgage System in Nigeria’s Real Estate Sector
+                      </h5>
+                      <p style="font-size: 1px">
+                        The mortgage system is the cornerstone of real estate
+                        financing worldwide, providing individuals and
+                        businesses with access to long-term credit for property
+                        acquisition. In advanced economies, such as the United
+                        States, United Kingdom, and Canada, well-structured ...
+                      </p>
+                    </a>
 
-                  <a href="#">
-                    <img src="assets/youtube.png" alt="YouTube" />
-                    Rising property prices and rental yields: What’s driving the
-                    Nigerian Real Estate boom?
-                  </a>
+                    <a
+                      href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720/"
+                      target="_blank"
+                      class="see-more"
+                    >
+                      View more on LinkedIn →
+                    </a>
+                  </div>
 
-                  <a href="#">
-                    <img src="assets/youtube.png" alt="YouTube" />
-                    Real Estate Playbook
-                  </a>
+                  <!-- PODCAST (YOUTUBE) -->
+                  <div class="tab-content" id="podcast">
+                    <a
+                      href="https://www.youtube.com/watch?v=1oDmcjf4MO4"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Transforming Nigerian Neighborhoods</h5>
+                      <p>
+                        How modern property development is reshaping urban
+                        communities…
+                      </p>
+                    </a>
 
-                  <a
-                    href="https://www.youtube.com/@shelternestrealty"
-                    class="see-more"
-                    >See more →</a
-                  >
+                    <a
+                      href="https://www.youtube.com/watch?v=9yST5KGYSmE"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Smart Investment Strategies</h5>
+                      <p>
+                        Maximizing returns in Lagos’ evolving real estate
+                        market…
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/@shelternestrealty"
+                      target="_blank"
+                      class="see-more"
+                    >
+                      Visit YouTube Channel →
+                    </a>
+                  </div>
+                  <div class="tab-content" id="social">
+                    <div class="social-icons">
+                      <a
+                        href="https://www.linkedin.com/in/esvoladayookeniyi/"
+                        target="_blank"
+                        aria-label="LinkedIn"
+                        class="social-icon linkedin"
+                      >
+                        <img src="assets/linkedin.jpg" alt="LinkedIn" />
+                      </a>
+
+                      <a
+                        href="#"
+                        target="_blank"
+                        aria-label="Facebook"
+                        class="social-icon facebook"
+                      >
+                        <img src="assets/facebook.png" alt="Facebook" />
+                      </a>
+
+                      <a
+                        href="#"
+                        target="_blank"
+                        aria-label="Instagram"
+                        class="social-icon instagram"
+                      >
+                        <img src="assets/ig.jpg" alt="Instagram" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,8 +231,9 @@
     </header>
 
     <!-- ================= HERO SLIDER ================= -->
-    <section class="page-hero">
-      <div class="container">
+    <section class="page-hero hero-overview">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
         <h1>Our Professional Affiliations</h1>
         <p>
           Comprehensive, ethical and results-driven real estate services
@@ -150,102 +243,103 @@
     </section>
 
     <!-- ================= AFFILIATIONS ================= -->
-    <!-- ================= AFFILIATIONS ================= -->
-    <section class="section affiliations-section">
-      <div class="container">
-        <h2>Professional Affiliations</h2>
+<section class="section affiliations-section">
+  <div class="container">
+    <h2 class="center-title">Professional Affiliations</h2>
 
-        <p class="section-intro">
-          Our firm is affiliated with leading national and international
-          professional bodies. These partnerships reflect our commitment to
-          ethical standards, professional excellence, and global best practices
-          in real estate.
-        </p>
+    <p class="section-intro">
+      Our firm maintains affiliations with respected national and international
+      professional bodies, reflecting our commitment to ethical standards,
+      professional excellence, and global best practices in real estate.
+    </p>
 
-        <!-- Affiliation Cards -->
-        <div class="affiliation-item">
-          <div class="affiliation-img">
-            <img src="assets/affiliations/niesv.png" alt="NIESV Logo" />
-          </div>
-          <div class="affiliation-text">
-            <h3>NIESV</h3>
-            <p>
-              The Nigerian Institution of Estate Surveyors and Valuers is a
-              non-profit, voluntary, professional organization set up in 1969 to
-              cater for the interest of the landed profession in Nigeria.
-            </p>
-          </div>
+    <div class="affiliations-wrapper">
+
+      <!-- ITEM -->
+      <div class="affiliation-item fade-in">
+        <div class="affiliation-img">
+          <img src="assets/affiliations/niesv.png" alt="NIESV Logo">
         </div>
-
-        <div class="affiliation-item reverse">
-          <div class="affiliation-text">
-            <h3>ESVARBON</h3>
-            <p>
-              Estate Surveyors & Valuers Registration Board of Nigeria – ensures
-              professional licensing, ethical conduct, and competence of estate
-              surveyors.
-            </p>
-          </div>
-          <div class="affiliation-img">
-            <img src="assets/affiliations/esvabon.jpg" alt="ESVARBON Logo" />
-          </div>
-        </div>
-
-        <div class="affiliation-item">
-          <div class="affiliation-img">
-            <img src="assets/affiliations/rics.jpeg" alt="RICS Logo" />
-          </div>
-          <div class="affiliation-text">
-            <h3>RICS</h3>
-            <p>
-              The Royal Institution of Chartered Surveyors is a professional
-              body that accredits professionals within the land, property and
-              construction sectors worldwide.
-            </p>
-          </div>
-        </div>
-
-        <div class="affiliation-item reverse">
-          <div class="affiliation-text">
-            <h3>FIG</h3>
-            <p>
-              International Federation of Surveyors – promoting professional
-              surveying worldwide and sustainable development.
-            </p>
-          </div>
-          <div class="affiliation-img">
-            <img src="assets/affiliations/fig.png" alt="FIG Logo" />
-          </div>
-        </div>
-
-        <div class="affiliation-item">
-          <div class="affiliation-img">
-            <img src="assets/affiliations/ivsc.png" alt="IVSC Logo" />
-          </div>
-          <div class="affiliation-text">
-            <h3>IVSC</h3>
-            <p>
-              International Valuation Standards Council – provides standardized
-              valuation methods for consistent global practice.
-            </p>
-          </div>
-        </div>
-
-        <div class="affiliation-item reverse">
-          <div class="affiliation-text">
-            <h3>FIABCI</h3>
-            <p>
-              FIABCI provides access and opportunity for real estate
-              professionals interested in gaining knowledge, sharing information
-              and conducting international business with each other.
-            </p>
-          </div>
-          <div class="affiliation-img">
-            <img src="assets/affiliations/fiabci.jpg" alt="FIABCI Logo" />
-          </div>
+        <div class="affiliation-text">
+          <h3>NIESV</h3>
+          <p>
+            The Nigerian Institution of Estate Surveyors and Valuers is the
+            foremost professional body regulating and promoting best practices
+            within Nigeria’s landed profession.
+          </p>
         </div>
       </div>
-    </section>
+
+      <div class="affiliation-item fade-in">
+        <div class="affiliation-img">
+          <img src="assets/affiliations/esvabon.jpg" alt="ESVARBON Logo">
+        </div>
+        <div class="affiliation-text">
+          <h3>ESVARBON</h3>
+          <p>
+            The statutory regulatory body responsible for licensing, ethical
+            compliance, and professional discipline of estate surveyors and
+            valuers in Nigeria.
+          </p>
+        </div>
+      </div>
+
+      <div class="affiliation-item fade-in">
+        <div class="affiliation-img">
+          <img src="assets/affiliations/rics.jpeg" alt="RICS Logo">
+        </div>
+        <div class="affiliation-text">
+          <h3>RICS</h3>
+          <p>
+            A globally recognized professional body advancing excellence and
+            standards in land, property, construction, and infrastructure.
+          </p>
+        </div>
+      </div>
+
+      <div class="affiliation-item fade-in">
+        <div class="affiliation-img">
+          <img src="assets/affiliations/fig.png" alt="FIG Logo">
+        </div>
+        <div class="affiliation-text">
+          <h3>FIG</h3>
+          <p>
+            The International Federation of Surveyors promotes professional
+            surveying standards and sustainable land governance worldwide.
+          </p>
+        </div>
+      </div>
+
+      <div class="affiliation-item fade-in">
+        <div class="affiliation-img">
+          <img src="assets/affiliations/ivsc.png" alt="IVSC Logo">
+        </div>
+        <div class="affiliation-text">
+          <h3>IVSC</h3>
+          <p>
+            Establishes globally accepted valuation standards to ensure
+            consistency, transparency, and confidence in valuation practice.
+          </p>
+        </div>
+      </div>
+
+      <div class="affiliation-item fade-in">
+        <div class="affiliation-img">
+          <img src="assets/affiliations/fiabci.jpg" alt="FIABCI Logo">
+        </div>
+        <div class="affiliation-text">
+          <h3>FIABCI</h3>
+          <p>
+            A global network connecting real estate professionals for knowledge
+            sharing, collaboration, and international business opportunities.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
     <!-- ================= CALL TO ACTION ================= -->
     <section class="cta">
@@ -262,5 +356,19 @@
     </footer>
     <script src="js/script.js"></script>
     <script src="js/main.js"></script>
+    <script>
+  const fadeItems = document.querySelectorAll('.fade-in');
+
+  const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  fadeItems.forEach(item => fadeObserver.observe(item));
+</script>
+
   </body>
 </html>

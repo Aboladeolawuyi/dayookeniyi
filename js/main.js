@@ -1,14 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Shelter Nest Realty website loaded successfully");
-});
-let slides = document.querySelectorAll(".slide");
-let index = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.nav-dot');
+let currentSlide = 0;
+const totalSlides = slides.length;
 
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+    dots[i].classList.toggle('active', i === index);
+  });
+  currentSlide = index;
+}
+
+// Auto Slide every 6s
 setInterval(() => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-}, 3000);
+  let nextSlide = (currentSlide + 1) % totalSlides;
+  showSlide(nextSlide);
+}, 4000);
+
+// Click Navigation
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    showSlide(parseInt(dot.dataset.slide));
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
@@ -129,3 +144,55 @@ const observerss = new IntersectionObserver((entries) => {
     });
   }
  
+const statNumbers = document.querySelectorAll('.stat-number');
+
+function startCounting() {
+  statNumbers.forEach(stat => {
+    const target = +stat.getAttribute('data-target');
+    let current = 0;
+    const duration = 3000; // 3 seconds
+    const increment = target / (duration / 30); // update every 30ms
+
+    const counter = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        stat.innerText = target;
+        clearInterval(counter);
+      } else {
+        stat.innerText = Math.ceil(current);
+      }
+    }, 30);
+  });
+}
+
+// Intersection Observer for visibility
+const statsSection = document.querySelector('.stats-section');
+
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      startCounting();
+      statsObserver.disconnect(); // only trigger once
+    }
+  });
+}, { threshold: 0.5 });
+
+statsObserver.observe(statsSection);
+
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('mouseenter', activateTab);
+    btn.addEventListener('click', activateTab);
+  });
+
+  function activateTab(e) {
+    const target = e.currentTarget.dataset.tab;
+
+    tabButtons.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+
+    e.currentTarget.classList.add('active');
+    document.getElementById(target).classList.add('active');
+  }
