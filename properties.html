@@ -130,6 +130,34 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .filter-bar {
+  max-width: 1200px;
+  margin: 20px auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.filter-bar select,
+.filter-bar button {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.filter-bar button {
+  background: #0a3d62;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.filter-bar button:hover {
+  background: #07406b;
+}
+
   </style>
 </head>
 
@@ -249,6 +277,40 @@
     </div>
   </header>
   <h2 class="page-title">All Properties</h2>
+  <div class="filter-bar">
+  <select id="filterLocation">
+    <option value="">All Locations</option>
+  </select>
+
+  <select id="filterType">
+    <option value="">Property Type</option>
+    <option value="Apartment">Apartment</option>
+    <option value="Duplex">Duplex</option>
+    <option value="Land">Land</option>
+  </select>
+
+  <select id="filterBeds">
+    <option value="">Beds</option>
+    <option value="1">1+</option>
+    <option value="2">2+</option>
+    <option value="3">3+</option>
+    <option value="4">4+</option>
+  </select>
+
+  <select id="filterPrice">
+    <option value="">Max Price</option>
+    <option value="50000000">₦50m</option>
+    <option value="100000000">₦100m</option>
+    <option value="200000000">₦200m</option>
+  </select>
+<select id="filterSaleRent">
+  <option value="">Sale / Rent</option>
+  <option value="Sale">For Sale</option>
+  <option value="Rent">For Rent</option>
+</select>
+  <button onclick="applyFilters()">Filter</button>
+</div>
+
   <div class="subtitle">Premium listings curated for modern living</div>
 
   <div id="allProperties" class="properties-grid"></div>
@@ -259,69 +321,103 @@
     <script src="js/script.js"></script>
     <script src="js/detail.js"></script>
     <script src="js/main.js"></script>
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-    const supabase = createClient(
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase = createClient(
       "https://fcxeuhmgizpjzldaervh.supabase.co",
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50"
     );
 
-    async function loadAllProperties() {
-      try {
-        const { data: properties, error } = await supabase
-          .from("properties")
-          .select("*")
-          .order("created_at", { ascending: false });
+let allProperties = [];
 
-        if (error) throw error;
+async function loadAllProperties() {
+  const { data, error } = await supabase
+    .from("properties")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-        if (!properties || properties.length === 0) {
-          document.getElementById("allProperties").innerHTML =
-            "<p style='text-align:center;color:#777'>No properties available.</p>";
-          return;
-        }
+  if (error) {
+    console.error(error);
+    return;
+  }
 
-        document.getElementById("allProperties").innerHTML = properties.map(p => {
+  allProperties = data;
+  populateLocations(data);
+  renderProperties(data);
+  ["filterLocation", "filterType", "filterBeds", "filterPrice", "filterSaleRent"]
+  .forEach(id => {
+    document.getElementById(id).addEventListener("change", applyFilters);
+  });
+}
 
-          const mediaHTML = (p.images || []).concat(p.images || []).map(url => {
-            if (url.endsWith(".mp4")) {
-              return `<video muted autoplay loop playsinline src="${url}"></video>`;
-            } else {
-              return `<img src="${url}" alt="${p.title}">`;
-            }
-          }).join("");
+function populateLocations(properties) {
+  const locationSelect = document.getElementById("filterLocation");
+  const locations = [...new Set(properties.map(p => p.location))];
 
-          return `
-            <div class="property-card" onclick="window.location.href='property.html?id=${p.id}'">
+  locations.forEach(loc => {
+    const option = document.createElement("option");
+    option.value = loc;
+    option.textContent = loc;
+    locationSelect.appendChild(option);
+  });
+}
 
-              <div class="media-wrapper">
-                <div class="media-track">
-                  ${mediaHTML}
-                </div>
-              </div>
+function applyFilters() {
+  const location = document.getElementById("filterLocation").value;
+  const type = document.getElementById("filterType").value;
+  const beds = document.getElementById("filterBeds").value;
+  const maxPrice = document.getElementById("filterPrice").value;
+  const saleRent = document.getElementById("filterSaleRent").value;
 
-              <div class="property-content">
-                <h4>${p.title}</h4>
-                <div class="location">${p.location}</div>
-                <div class="price">₦${Number(p.price).toLocaleString()}</div>
-                <div class="badge">${p.property_type} · ${p.sale_rent}</div>
-                <div class="details">${p.details.substring(0, 90)}...</div>
-              </div>
+  let filtered = allProperties.filter(p => {
+    return (
+      (!location || p.location === location) &&
+      (!type || p.property_type === type) &&
+      (!saleRent || p.sale_rent === saleRent) &&
+      (!beds || p.bedrooms >= Number(beds)) &&
+      (!maxPrice || p.price <= Number(maxPrice))
+    );
+  });
 
-            </div>
-          `;
-        }).join("");
+  renderProperties(filtered);
+}
 
-      } catch (err) {
-        console.error(err);
-        document.getElementById("allProperties").innerHTML =
-          "<p style='text-align:center;color:red'>Failed to load properties.</p>";
-      }
-    }
+function renderProperties(properties) {
+  const container = document.getElementById("allProperties");
 
-    loadAllProperties();
-  </script>
+  if (!properties.length) {
+    container.innerHTML = "<p style='text-align:center'>No matching properties</p>";
+    return;
+  }
+
+  container.innerHTML = properties.map(p => {
+    const mediaHTML = (p.images || []).concat(p.images || []).map(url =>
+      url.endsWith(".mp4")
+        ? `<video muted autoplay loop playsinline src="${url}"></video>`
+        : `<img src="${url}" alt="${p.title}">`
+    ).join("");
+
+    return `
+      <div class="property-card" onclick="location.href='property.html?id=${p.id}'">
+        <div class="media-wrapper">
+          <div class="media-track">${mediaHTML}</div>
+        </div>
+        <div class="property-content">
+          <h4>${p.title}</h4>
+          <div class="location">${p.location}</div>
+          <div class="price">₦${Number(p.price).toLocaleString()}</div>
+          <div class="badge">${p.property_type} · ${p.sale_rent}</div>
+          <div class="details">${p.details.substring(0, 90)}...</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+loadAllProperties();
+</script>
 
 </body>
 </html>
