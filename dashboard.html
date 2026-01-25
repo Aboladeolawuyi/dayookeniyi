@@ -682,6 +682,44 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50"
 );
 
+const propertyTypeSelect = document.getElementById("property_type");
+const propertySubtypeSelect = document.getElementById("property_subtype");
+
+// Define the mapping for subtypes
+const subtypes = {
+  "Flat": ["Mini Flat (Room and Parlour)", "Self Contain (Single Room)"],
+  "House": ["Detached Bungalow", "Detached Duplex", "Semi-Detached Bungalow", "Semi-Detached Duplex", "Terraced Bungalow", "Terraced Duplex"],
+  "Land": ["Commercial Land", "Residential Land", "Industrial Land", "Mixed-Use Land"],
+  "Commercial": ["Church", "Warehouse", "Shop", "Filling Station", "Hotel/Guest House", "Office Space", "School", "Restaurant/Bar", "Factory"]
+};
+
+// Listen for changes
+propertyTypeSelect.addEventListener("change", () => {
+  const type = propertyTypeSelect.value;
+
+  // Clear previous options
+  propertySubtypeSelect.innerHTML = "";
+
+  if (!type || !subtypes[type]) {
+    // Default option
+    propertySubtypeSelect.innerHTML = `<option value="">Select property type first</option>`;
+    return;
+  }
+
+  // Add a default "select" option
+  propertySubtypeSelect.innerHTML = `<option value="">Select subtype</option>`;
+
+  // Populate subtypes
+  subtypes[type].forEach(sub => {
+    const option = document.createElement("option");
+    option.value = sub;
+    option.textContent = sub;
+    propertySubtypeSelect.appendChild(option);
+  });
+});
+
+
+
 // 1️⃣ Get logged-in user
 const { data, error } = await supabase.auth.getSession();
 
@@ -740,7 +778,6 @@ if (p.images && p.images.length > 0) {
    return `
   <div class="property-card">
     <h4>${p.title}</h4>
-    <p>${p.location}</p>
     <strong>₦${Number(p.price).toLocaleString()}</strong>
     <p>Status: ${p.market_status} | Category: ${p.category}</p>
 <p>Type: ${p.property_type} - ${p.property_subtype}</p>
