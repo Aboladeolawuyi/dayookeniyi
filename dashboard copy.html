@@ -538,132 +538,57 @@
 
   <h2 class="page-title">Property Management Dashboard</h2>
 
-<form id="propertyForm" class="property-form">
-  <div class="form-title">Add New Property</div>
+  <form id="propertyForm" class="property-form">
+    <div class="form-title">Add New Property</div>
 
-  <div class="form-grid">
+    <div class="form-grid">
+      <div>
+        <label>Property Title</label>
+        <input type="text" id="title" placeholder="e.g. Luxury 3 Bedroom Duplex" required>
+      </div>
 
-    <div>
-      <label>Title</label>
-      <input type="text" id="title" placeholder="Luxury 3 Bedroom Flats with Excellent Facilities" required>
+      <div>
+        <label>Location</label>
+        <input type="text" id="location" placeholder="e.g. Lekki, Lagos" required>
+      </div>
+
+      <div>
+        <label>Price (₦)</label>
+        <input type="number" id="price" placeholder="e.g. 25000000" required>
+      </div>
+
+      <div>
+        <label>Sale / Rent</label>
+        <select id="sale_rent" required>
+          <option value="">Select</option>
+          <option value="Sale">Sale</option>
+          <option value="Rent">Rent</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Property Type</label>
+        <select id="property_type" required>
+          <option value="">Select</option>
+          <option value="Residential">Residential</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Land">Land</option>
+        </select>
+      </div>
+
+      <div class="file-input">
+        <label>Property Images / Videos</label>
+        <input type="file" id="mediaFiles" multiple accept="image/*,video/*">
+      </div>
+
+      <div class="file-input">
+        <label>Property Details</label>
+        <textarea id="details" placeholder="Describe the property features, location benefits, etc." required></textarea>
+      </div>
     </div>
 
-    <div>
-      <label>Market Status</label>
-      <select id="market_status" required>
-        <option value="">Select</option>
-        <option value="Available">Available</option>
-        <option value="Sold">Sold</option>
-        <option value="Let">Let</option>
-      </select>
-    </div>
-
-    <div>
-      <label>Category</label>
-      <select id="category" required>
-        <option value="">Select</option>
-        <option value="For Sale">For Sale</option>
-        <option value="For Rent">For Rent</option>
-        <option value="Joint Venture">Joint Venture</option>
-        <option value="Short Let">Short Let</option>
-      </select>
-    </div>
-
-    <div>
-      <label>Property Type</label>
-      <select id="property_type" required>
-        <option value="">Select</option>
-        <option value="Flat">Flat / Apartment</option>
-        <option value="House">House</option>
-        <option value="Land">Land</option>
-        <option value="Commercial">Commercial Property</option>
-      </select>
-    </div>
-
-    <div>
-      <label>Property Subtype</label>
-      <select id="property_subtype" required>
-        <option value="">Select property type first</option>
-      </select>
-    </div>
-
-    <div>
-      <label>Locality / Area</label>
-      <input type="text" id="locality" placeholder="e.g. Lekki Phase 1">
-    </div>
-
-    <div>
-      <label>Street / Estate</label>
-      <input type="text" id="street" placeholder="e.g. Admiralty Way">
-    </div>
-
-    <div>
-      <label>Price (₦)</label>
-      <input type="number" id="price" required>
-    </div>
-
-    <div>
-      <label>Bedrooms</label>
-      <input type="number" id="bedrooms">
-    </div>
-
-    <div>
-      <label>Bathrooms</label>
-      <input type="number" id="bathrooms">
-    </div>
-
-    <div>
-      <label>Toilets</label>
-      <input type="number" id="toilets">
-    </div>
-
-    <div>
-      <label>Parking Spaces</label>
-      <input type="number" id="parking">
-    </div>
-
-    <div>
-      <label>Total Area (sqm)</label>
-      <input type="number" id="total_area">
-    </div>
-
-    <div>
-      <label>Covered Area (sqm)</label>
-      <input type="number" id="covered_area">
-    </div>
-
-    <div>
-      <label>
-        <input type="checkbox" id="furnished"> Furnished
-      </label>
-    </div>
-
-    <div>
-      <label>
-        <input type="checkbox" id="serviced"> Serviced
-      </label>
-    </div>
-
-    <div>
-      <label>Video Link</label>
-      <input type="url" id="video_link" placeholder="https://www.instagram.com/reel/...">
-    </div>
-
-    <div class="file-input">
-      <label>Pictures / Videos</label>
-      <input type="file" id="mediaFiles" multiple accept="image/*,video/*">
-    </div>
-
-    <div class="file-input">
-      <label>Description</label>
-      <textarea id="description" required></textarea>
-    </div>
-
-  </div>
-
-  <button type="submit" class="submit-btn">Add Property</button>
-</form>
-
+    <button type="submit" class="submit-btn">Add Property</button>
+  </form>
 
   <hr>
 
@@ -742,15 +667,7 @@ if (p.images && p.images.length > 0) {
     <h4>${p.title}</h4>
     <p>${p.location}</p>
     <strong>₦${Number(p.price).toLocaleString()}</strong>
-    <p>Status: ${p.market_status} | Category: ${p.category}</p>
-<p>Type: ${p.property_type} - ${p.property_subtype}</p>
-<p>Location: ${p.locality}, ${p.street}</p>
-<p>Bedrooms: ${p.bedrooms} | Bathrooms: ${p.bathrooms} | Toilets: ${p.toilets} | Parking: ${p.parking}</p>
-<p>Total Area: ${p.total_area} sqm | Covered Area: ${p.covered_area} sqm</p>
-<p>Furnished: ${p.furnished ? "Yes" : "No"} | Serviced: ${p.serviced ? "Yes" : "No"}</p>
-<p><a href="${p.video_link}" target="_blank">Watch Video</a></p>
-<p>${p.description}</p>
-
+    <p>${p.sale_rent} | ${p.property_type}</p>
     <div class="media">${mediaHTML}</div>
         <button 
       class="delete-btn" 
@@ -806,29 +723,16 @@ document.getElementById("propertyForm").addEventListener("submit", async (e) => 
   const files = document.getElementById("mediaFiles").files;
   const urls = await uploadFilesAndGetUrls(files);
 
-const property = {
+  const property = {
     title: document.getElementById("title").value,
-    market_status: document.getElementById("market_status").value,
-    category: document.getElementById("category").value,
-    property_type: document.getElementById("property_type").value,
-    property_subtype: document.getElementById("property_subtype").value,
-    locality: document.getElementById("locality").value,
-    street: document.getElementById("street").value,
+    location: document.getElementById("location").value,
     price: Number(document.getElementById("price").value),
-    bedrooms: Number(document.getElementById("bedrooms").value) || 0,
-    bathrooms: Number(document.getElementById("bathrooms").value) || 0,
-    toilets: Number(document.getElementById("toilets").value) || 0,
-    parking: Number(document.getElementById("parking").value) || 0,
-    total_area: Number(document.getElementById("total_area").value) || 0,
-    covered_area: Number(document.getElementById("covered_area").value) || 0,
-    furnished: document.getElementById("furnished").checked,
-    serviced: document.getElementById("serviced").checked,
-    video_link: document.getElementById("video_link").value,
-    description: document.getElementById("description").value,
+    sale_rent: document.getElementById("sale_rent").value,
+    property_type: document.getElementById("property_type").value,
+    details: document.getElementById("details").value,
     images: urls.length ? urls : [],
     created_by: user.id
-};
-
+  };
 
   const { data, error } = await supabase
     .from("properties")
