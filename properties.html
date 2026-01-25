@@ -537,9 +537,11 @@
     <script src="js/detail.js"></script>
     <script src="js/main.js"></script>
 
+
 <script type="module">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+// Supabase
 const supabase = createClient(
       "https://fcxeuhmgizpjzldaervh.supabase.co",
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50"
@@ -558,24 +560,34 @@ async function loadAllProperties() {
     return;
   }
 
-  allProperties = data;
-  populateLocations(data);
+  allProperties = data || [];
+  populateFilters(data);
   renderProperties(data);
   ["filterLocation", "filterType", "filterBeds", "filterPrice", "filterSaleRent"]
-  .forEach(id => {
-    document.getElementById(id).addEventListener("change", applyFilters);
-  });
+    .forEach(id => document.getElementById(id).addEventListener("change", applyFilters));
 }
 
-function populateLocations(properties) {
+function populateFilters(properties) {
   const locationSelect = document.getElementById("filterLocation");
-  const locations = [...new Set(properties.map(p => p.location))];
+  const typeSelect = document.getElementById("filterType");
+
+  const locations = [...new Set(properties.map(p => p.locality).filter(Boolean))];
+  const types = [...new Set(properties.map(p => p.property_type).filter(Boolean))];
 
   locations.forEach(loc => {
     const option = document.createElement("option");
     option.value = loc;
     option.textContent = loc;
     locationSelect.appendChild(option);
+  });
+
+  // Clear type options first
+  typeSelect.innerHTML = `<option value="">Property Type</option>`;
+  types.forEach(t => {
+    const option = document.createElement("option");
+    option.value = t;
+    option.textContent = t;
+    typeSelect.appendChild(option);
   });
 }
 
@@ -586,13 +598,13 @@ function applyFilters() {
   const maxPrice = document.getElementById("filterPrice").value;
   const saleRent = document.getElementById("filterSaleRent").value;
 
-  let filtered = allProperties.filter(p => {
+  const filtered = allProperties.filter(p => {
     return (
-      (!location || p.location === location) &&
+      (!location || p.locality === location) &&
       (!type || p.property_type === type) &&
       (!saleRent || p.sale_rent === saleRent) &&
-      (!beds || p.bedrooms >= Number(beds)) &&
-      (!maxPrice || p.price <= Number(maxPrice))
+      (!beds || (p.bedrooms && p.bedrooms >= Number(beds))) &&
+      (!maxPrice || (p.price && p.price <= Number(maxPrice)))
     );
   });
 
@@ -608,31 +620,49 @@ function renderProperties(properties) {
   }
 
   container.innerHTML = properties.map(p => {
-    const mediaHTML = (p.images || []).concat(p.images || []).map(url =>
-      url.endsWith(".mp4")
+    // Media
+    const mediaHTML = (p.images || []).map(url =>
+      url.match(/\.(mp4|webm|ogg)$/i)
         ? `<video muted autoplay loop playsinline src="${url}"></video>`
         : `<img src="${url}" alt="${p.title}">`
     ).join("");
 
+    // Build details without showing null/empty
+    const detailsArr = [];
+    if (p.market_status) detailsArr.push(`<span>Status: ${p.market_status}</span>`);
+    if (p.category) detailsArr.push(`<span>Category: ${p.category}</span>`);
+    if (p.property_type) detailsArr.push(`<span>Type: ${p.property_type}${p.property_subtype ? " - " + p.property_subtype : ""}</span>`);
+    if (p.locality || p.street) detailsArr.push(`<span>Location: ${[p.locality, p.street].filter(Boolean).join(", ")}</span>`);
+    if (p.bedrooms) detailsArr.push(`<span>Bedrooms: ${p.bedrooms}</span>`);
+    if (p.bathrooms) detailsArr.push(`<span>Bathrooms: ${p.bathrooms}</span>`);
+    if (p.toilets) detailsArr.push(`<span>Toilets: ${p.toilets}</span>`);
+    if (p.parking) detailsArr.push(`<span>Parking: ${p.parking}</span>`);
+    if (p.total_area) detailsArr.push(`<span>Total Area: ${p.total_area} sqm</span>`);
+    if (p.covered_area) detailsArr.push(`<span>Covered Area: ${p.covered_area} sqm</span>`);
+    if (p.furnished !== undefined) detailsArr.push(`<span>Furnished: ${p.furnished ? "Yes" : "No"}</span>`);
+    if (p.serviced !== undefined) detailsArr.push(`<span>Serviced: ${p.serviced ? "Yes" : "No"}</span>`);
+    if (p.video_link) detailsArr.push(`<span><a href="${p.video_link}" target="_blank">Watch Video</a></span>`);
+
+    const descriptionHTML = p.description ? `<p>${p.description.substring(0, 150)}...</p>` : "";
+
     return `
       <div class="property-card" onclick="location.href='property.html?id=${p.id}'">
-        <div class="media-wrapper">
-          <div class="media-track">${mediaHTML}</div>
-        </div>
+        <div class="media-wrapper">${mediaHTML}</div>
         <div class="property-content">
           <h4>${p.title}</h4>
-          <div class="location">${p.location}</div>
-          <div class="price">₦${Number(p.price).toLocaleString()}</div>
-          <div class="badge">${p.property_type} · ${p.sale_rent}</div>
-          <div class="details">${p.details.substring(0, 90)}...</div>
+          <div class="price">${p.price ? "₦" + Number(p.price).toLocaleString() : ""}</div>
+          <div class="badges">${detailsArr.join(" | ")}</div>
+          ${descriptionHTML}
         </div>
       </div>
     `;
   }).join("");
 }
 
+// Initialize
 loadAllProperties();
 </script>
+
 
 </body>
 </html>

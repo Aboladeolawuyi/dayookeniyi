@@ -287,10 +287,7 @@
   <div class="property-card">
     <div class="price">₦<span id="price"></span></div>
 
-    <div class="badges">
-      <div class="badge" id="type"></div>
-      <div class="badge" id="sale_rent"></div>
-    </div>
+    <div class="badges" id="badges"></div>
 
     <div class="details-title">Property Description</div>
     <div class="details-text" id="details"></div>
@@ -298,7 +295,7 @@
 
 </div>
 
-<!-- Image Modal -->
+<!-- Image/Video Modal -->
 <div class="modal" id="imageModal">
   <span onclick="closeModal()">×</span>
   <div id="modalContent"></div>
@@ -311,7 +308,7 @@
     <script src="js/detail.js"></script>
     <script src="js/main.js"></script>
 <script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const supabase = createClient(
   "https://fcxeuhmgizpjzldaervh.supabase.co",
@@ -333,21 +330,53 @@ async function loadProperty() {
       .eq("id", propertyId)
       .single();
 
-    if (error) throw error;
+    if (error || !property) throw error || new Error("Property not found");
 
-    document.getElementById("title").textContent = property.title;
-    document.getElementById("location").textContent = property.location;
-    document.getElementById("price").textContent = Number(property.price).toLocaleString();
-    document.getElementById("type").textContent = property.property_type;
-    document.getElementById("sale_rent").textContent = property.sale_rent;
-    document.getElementById("details").textContent = property.details;
+    // Title
+    document.getElementById("title").textContent = property.title || "";
 
-    document.getElementById("media").innerHTML = (property.images || []).map(url => {
-      if (url.endsWith(".mp4")) {
+    // Location
+    const locationParts = [property.locality, property.street, property.area].filter(Boolean);
+    document.getElementById("location").textContent = locationParts.join(", ");
+
+    // Price
+    document.getElementById("price").textContent = property.price ? Number(property.price).toLocaleString() : "";
+
+    // Badges (status, category, type/subtype, sale/rent, bedrooms, bathrooms, toilets, parking, furnished, serviced)
+    const badgesContainer = document.getElementById("badges");
+    const badges = [];
+
+    if (property.market_status) badges.push(`<div class="badge">${property.market_status}</div>`);
+    if (property.category) badges.push(`<div class="badge">${property.category}</div>`);
+    if (property.property_type) badges.push(`<div class="badge">${property.property_type}${property.property_subtype ? " - " + property.property_subtype : ""}</div>`);
+    if (property.sale_rent) badges.push(`<div class="badge">${property.sale_rent}</div>`);
+    if (property.bedrooms) badges.push(`<div class="badge">${property.bedrooms} Beds</div>`);
+    if (property.bathrooms) badges.push(`<div class="badge">${property.bathrooms} Baths</div>`);
+    if (property.toilets) badges.push(`<div class="badge">${property.toilets} Toilets</div>`);
+    if (property.parking) badges.push(`<div class="badge">${property.parking} Parking</div>`);
+    if (property.furnished !== undefined) badges.push(`<div class="badge">${property.furnished ? "Furnished" : "Unfurnished"}</div>`);
+    if (property.serviced !== undefined) badges.push(`<div class="badge">${property.serviced ? "Serviced" : "Not Serviced"}</div>`);
+
+    badgesContainer.innerHTML = badges.join("");
+
+    // Description
+    document.getElementById("details").textContent = property.description || property.details || "";
+
+    // Media gallery
+    const mediaContainer = document.getElementById("media");
+    mediaContainer.innerHTML = (property.images || []).map(url => {
+      if (url.match(/\.(mp4|webm|ogg)$/i)) {
         return `<video muted controls onclick="openModal('${url}', true)"><source src="${url}" type="video/mp4"></video>`;
       }
       return `<img src="${url}" onclick="openModal('${url}', false)">`;
     }).join("");
+
+    // Optional: video link button
+    if (property.video_link) {
+      const videoBtn = document.createElement("div");
+      videoBtn.innerHTML = `<a href="${property.video_link}" target="_blank">Watch Video</a>`;
+      badgesContainer.appendChild(videoBtn);
+    }
 
   } catch (err) {
     console.error(err);
@@ -357,7 +386,8 @@ async function loadProperty() {
 
 loadProperty();
 
-window.openModal = function (src, isVideo) {
+// Modal functions
+window.openModal = function(src, isVideo) {
   const modal = document.getElementById("imageModal");
   const content = document.getElementById("modalContent");
   modal.style.display = "flex";
@@ -366,11 +396,11 @@ window.openModal = function (src, isVideo) {
     : `<img src="${src}">`;
 };
 
-window.closeModal = function () {
-  document.getElementById("imageModal").style.display = "none";
+window.closeModal = function() {
+  const modal = document.getElementById("imageModal");
+  modal.style.display = "none";
   document.getElementById("modalContent").innerHTML = "";
 };
 </script>
-
 </body>
 </html>
