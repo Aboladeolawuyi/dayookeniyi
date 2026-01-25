@@ -600,6 +600,7 @@
 <script type="module">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+
 // Supabase credentials
 const supabase = createClient(
   "https://fcxeuhmgizpjzldaervh.supabase.co",
@@ -624,9 +625,10 @@ supabase.auth.onAuthStateChange((_event, session) => {
 async function loadProperties() {
   try {
     const { data: properties, error } = await supabase
-      .from("properties")
-      .select("*")
-      .order("created_at", { ascending: false });
+  .from("properties")
+  .select("*")
+  .order("created_at", { ascending: false });
+
 
     if (error) throw error;
 
@@ -636,54 +638,55 @@ async function loadProperties() {
     }
 
     document.getElementById("myProperties").innerHTML = properties.map(p => {
-      let mediaHTML = "";
+     let mediaHTML = "";
 
-      if (p.images && p.images.length > 0) {
-        const url = p.images[0];
+if (p.images && p.images.length > 0) {
+  const url = p.images[0];
 
-        if (url.match(/\.(mp4|webm|ogg)$/i)) {
-          mediaHTML = `
-            <video controls>
-              <source src="${url}" type="video/mp4">
-            </video>
-          `;
-        } else {
-          mediaHTML = `
-            <img src="${url}" alt="${p.title}">
-          `;
-        }
-      } else {
-        mediaHTML = `
-          <div style="height:180px;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:8px;color:#777;">
-            No Image
-          </div>
-        `;
-      }
+  if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    mediaHTML = `
+      <video controls>
+        <source src="${url}" type="video/mp4">
+      </video>
+    `;
+  } else {
+    mediaHTML = `
+      <img src="${url}" alt="${p.title}">
+    `;
+  }
+} else {
+  mediaHTML = `
+    <div style="height:180px;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:8px;color:#777;">
+      No Image
+    </div>
+  `;
+}
 
-      return `
-        <div class="property-card">
-          <h4>${p.title}</h4>
-          <p>${p.location}</p>
-          <strong>₦${Number(p.price).toLocaleString()}</strong>
-          <p>${p.sale_rent} | ${p.property_type}</p>
-          <div class="media">${mediaHTML}</div>
-          <button 
-            class="delete-btn" 
-            data-id="${p.id}"
-            data-images='${JSON.stringify(p.images || [])}'>
-            Delete Property
-          </button>
-        </div>
-      `;
+   return `
+  <div class="property-card">
+    <h4>${p.title}</h4>
+    <p>${p.location}</p>
+    <strong>₦${Number(p.price).toLocaleString()}</strong>
+    <p>${p.sale_rent} | ${p.property_type}</p>
+    <div class="media">${mediaHTML}</div>
+        <button 
+      class="delete-btn" 
+      data-id="${p.id}"
+      data-images='${JSON.stringify(p.images || [])}'>
+      Delete Property
+    </button>
+  </div>
+`;
+
     }).join("");
 
   } catch (err) {
     console.error("Error loading properties:", err.message);
-    document.getElementById("myProperties").innerHTML =
-      "<p>Error loading properties. Check console.</p>";
+    document.getElementById("myProperties").innerHTML = "<p>Error loading properties. Check console.</p>";
   }
 }
-
+document.body.style.display = "block";
+const user = data.session.user;
 
 // 3️⃣ Upload files to storage and get public URLs
 async function uploadFilesAndGetUrls(files) {
@@ -752,7 +755,7 @@ async function deleteProperty(propertyId, images = []) {
   if (!confirmDelete) return;
 
   // 1️⃣ Delete property record
- const { error } = await supabase
+  const { error } = await supabase
   .from("properties")
   .delete()
   .eq("id", propertyId);
