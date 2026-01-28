@@ -1,439 +1,285 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>Properties | Property Management</title>
-  <link rel="icon" type="image/png" href="assets/favicon.ico" />
-  <meta name="description" content="Browse featured properties for sale and rent by Shelter Nest Realty" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #e9edf3);
-      margin: 0;
-      padding: 0px 25px;
-    }
-
-    h2.page-title {
-      color: #0a3d62;
-      text-align: center;
-      font-size: 34px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #6c757d;
-      font-size: 15px;
-      margin-bottom: 40px;
-    }
-
-    .properties-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .property-card {
-      background: #fff;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-      cursor: pointer;
-      transition: all 0.35s ease;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .property-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
-    }
-
-    /* Image slider */
-    .media-wrapper {
-      position: relative;
-      width: 100%;
-      height: 220px;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .media-track {
-      display: flex;
-      width: max-content;
-      animation: scrollMedia 18s linear infinite;
-    }
-
-  .media-track img,
-.media-track video {
-  width: 320px;
-  height: 220px;
-  object-fit: contain;   /* ✅ show full image */
-  background: #000;
-  flex-shrink: 0;
-}
-
-    .property-content {
-      padding: 18px 20px 22px;
-    }
-
-    .property-content h4 {
-      margin: 0;
-      color: #0a3d62;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    .location {
-      margin: 6px 0 10px;
-      font-size: 14px;
-      color: #6c757d;
-    }
-
-    .price {
-      font-size: 20px;
-      font-weight: 800;
-      color: #1e272e;
-      margin-bottom: 8px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 20px;
-      background: #eef4fb;
-      color: #0a3d62;
-      margin-bottom: 12px;
-    }
-
-    .details {
-      font-size: 14px;
-      color: #444;
-      line-height: 1.5;
-      margin-top: 10px;
-    }
-
-    @keyframes scrollMedia {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .filter-bar {
-      max-width: 1200px;
-      margin: 20px auto 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-    }
-
-    .filter-bar select,
-    .filter-bar button {
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-size: 14px;
-    }
-
-    .filter-bar button {
-      background: #0a3d62;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-    }
-
-    .filter-bar button:hover {
-      background: #07406b;
-    }
-
-    .hero-overview {
-      position: relative;
-      border-radius: 3px;
-      min-height: 40vh;
-      background-image: url("../assets/comp.jpeg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
-      z-index: 5;
-    }
-
-    .hero-content {
-      position: relative;
-      text-align: left;
-      max-width: 900px;
-      color: #fff;
-      animation: heroFade 1.4s ease forwards;
-    }
-
-    .hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    .hero-content p {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      opacity: 0.95;
-    }
-
-    @keyframes heroFade {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <!-- ================= HEADER ================= -->
-  <header class="site-header">
-    <div class="container">
-      <nav class="navbar">
-        <div class="brand">
-          <a href="index.html" class="logo-link">
-            <img src="assets/new_logo.jpg" alt="Shelter Nest Realty Logo" class="logo" />
-          </a>
-        </div>
-
-        <!-- Hamburger -->
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <div class="nav-links" id="navLinks">
-          <!-- Home -->
-          <a href="index.html">Home</a>
-
-          <!-- ABOUT US DROPDOWN -->
-          <div class="nav-item dropdown" style="cursor: pointer">
-            <a href="#" class="dropdown-toggle">
-              About Us <span class="arrow">▾</span>
-            </a>
-
-            <div class="dropdown-menu">
-              <a href="company-overview.html">Company Overview</a>
-              <a href="management-team.html">Management Team</a>
-              <a href="affiliations.html">Professional Affiliates</a>
-            </div>
-          </div>
-
-          <!-- SERVICES DROPDOWN -->
-          <div class="nav-item dropdown">
-            <a href="services.html" class="dropdown-toggle">
-              Services <span class="arrow">▾</span>
-            </a>
-
-            <div class="dropdown-menu dropdown-wide">
-              <a href="valuation.html">Valuation for All Purposes</a>
-              <a href="propertymanagement.html">Property & Facility Management</a>
-              <a href="estateagency.html">Estate Agency</a>
-              <a href="feasibility.html">Feasibility & Viability Appraisal</a>
-              <a href="titlesearch.html">Title Search & Verification</a>
-              <a href="projectmanagement.html">Project Management</a>
-              <a href="propertymarketing.html">Property Marketing</a>
-              <a href="advisory.html">Real Estate Advisory Services</a>
-            </div>
-          </div>
-
-          <!-- Other Links -->
-          <a href="properties.html">Properties</a>
-          <a href="contact.html">Contact Us</a>
-          <!-- INSIGHTS MEGA MENU -->
-
-          <div class="nav-item mega-dropdown">
-            <a href="#" class="dropdown-toggle">
-              Insights <span class="arrow">▾</span>
-            </a>
-
-            <div class="mega-menu insights-dropdown">
-              <!-- LEFT MENU -->
-              <div class="insights-tabs">
-                <button class="tab-btn active" data-tab="newsletter">
-                  Newsletter
-                </button>
-                <button class="tab-btn" data-tab="podcast">Podcast</button>
-                <button class="tab-btn" data-tab="social">
-                  Connect with us
-                </button>
-              </div>
-
-              <!-- RIGHT CONTENT -->
-              <div class="insights-content">
-                <!-- NEWSLETTER (LINKEDIN) -->
-                <div class="tab-content active" id="newsletter">
-                  <div style="text-align: center">
-                    <h4>The Real Estate Review</h4>
-                    <p style="font-size: 1px">
-                      Get expert insights you need to stay ahead in real
-                      estate.
-                    </p>
-                  </div>
-
-                  <a href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720"
-                    target="_blank" class="insight-item">
-                    <h5>Who Really Pays for Demolitions?</h5>
-                    <p style="font-size: 1px">
-                      Should homeowners be punished for regulatory failures
-                      they did not cause? One of the most painful aspects of
-                      this crisis is the displacement of ordinary citizens who
-                      purchased homes believing them to be legally compliant.
-                      Consider this scenario; A young family bought....
-                    </p>
-                  </a>
-
-                  <a href="https://www.linkedin.com/pulse/who-really-pays-demolitions-hard-questions-lagos-must-xyv1e/?trackingId=T4fwDwZ%2FTw%2BAroIXrT1img%3D%3D"
-                    target="_blank" class="insight-item">
-                    <h5>
-                      The Mortgage System in Nigeria’s Real Estate Sector
-                    </h5>
-                    <p style="font-size: 1px">
-                      The mortgage system is the cornerstone of real estate
-                      financing worldwide, providing individuals and
-                      businesses with access to long-term credit for property
-                      acquisition. In advanced economies, such as the United
-                      States, United Kingdom, and Canada, well-structured ...
-                    </p>
-                  </a>
-
-                  <a href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720/"
-                    target="_blank" class="see-more">
-                    View more on LinkedIn →
-                  </a>
-                </div>
-
-                <!-- PODCAST (YOUTUBE) -->
-                <div class="tab-content" id="podcast">
-                  <a href="https://www.youtube.com/watch?v=1oDmcjf4MO4" target="_blank" class="insight-item">
-                    <h5>Transforming Nigerian Neighborhoods</h5>
-                    <p>
-                      How modern property development is reshaping urban
-                      communities…
-                    </p>
-                  </a>
-
-                  <a href="https://www.youtube.com/watch?v=9yST5KGYSmE" target="_blank" class="insight-item">
-                    <h5>Smart Investment Strategies</h5>
-                    <p>
-                      Maximizing returns in Lagos’ evolving real estate
-                      market…
-                    </p>
-                  </a>
-
-                  <a href="https://www.youtube.com/@shelternestrealty" target="_blank" class="see-more">
-                    Visit YouTube Channel →
-                  </a>
-                </div>
-                <div class="tab-content" id="social">
-                  <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/esvoladayookeniyi/" target="_blank" aria-label="LinkedIn"
-                      class="social-icon linkedin">
-                      <img src="assets/linkedin.jpg" alt="LinkedIn" />
-                    </a>
-
-                    <a href="#" target="_blank" aria-label="Facebook" class="social-icon facebook">
-                      <img src="assets/facebook.png" alt="Facebook" />
-                    </a>
-
-                    <a href="#" target="_blank" aria-label="Instagram" class="social-icon instagram">
-                      <img src="assets/ig.jpg" alt="Instagram" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <section class="page-hero hero-overview" style="
-        position: relative;
-        height: 45vh;
-        background: url(&quot;assets/comp.jpeg&quot;) center/cover no-repeat;
-        display: flex;
-        align-items: center;
-      ">
-    <!-- Overlay -->
-    <div style="
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
-        "></div>
-
-    <!-- Content -->
-    <div class="container hero-content" style="
-          position: relative;
-          z-index: 2;
-          text-align: left;
-          color: #ffffff;
-          max-width: 900px;
-          margin: 0 auto;
-          padding: 0 20px;
-          animation: fadeUp 1.1s ease forwards;
-        ">
-      <h1 style="
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
-            font-weight: 800;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-          ">
-        Find the Right Property
-      </h1>
-
-      <p style="font-size: 1.1rem; line-height: 1.7; opacity: 0.95">
-        Explore our carefully selected residential and commercial properties
-        for sale and rent across prime locations in Nigeria.
-      </p>
-    </div>
-
-    <!-- Inline animation -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Properties | Property Management</title>
+    <link rel="icon" type="image/png" href="assets/favicon.ico" />
+    <meta
+      name="description"
+      content="Browse featured properties for sale and rent by Shelter Nest Realty"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa, #e9edf3);
+        margin: 0;
+        padding: 0px 25px;
+      }
+
+      h2.page-title {
+        color: #0a3d62;
+        text-align: center;
+        font-size: 34px;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #6c757d;
+        font-size: 15px;
+        margin-bottom: 40px;
+      }
+
+      .properties-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .property-card {
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        transition: all 0.35s ease;
+        animation: fadeUp 0.6s ease both;
+      }
+
+      .property-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
+      }
+
+      /* Image slider */
+      .media-wrapper {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .media-track {
+        display: flex;
+        width: max-content;
+        animation: scrollMedia 36s linear infinite;
+      }
+
+      .media-track img,
+      .media-track video {
+        width: 320px;
+        height: 220px;
+        object-fit: contain; /* ✅ show full image */
+        background: #000;
+        flex-shrink: 0;
+      }
+
+      .property-content {
+        padding: 18px 20px 22px;
+      }
+
+      .property-content h4 {
+        margin: 0;
+        color: #0a3d62;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .location {
+        margin: 6px 0 10px;
+        font-size: 14px;
+        color: #6c757d;
+      }
+
+      .price {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1e272e;
+        margin-bottom: 8px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 20px;
+        background: #eef4fb;
+        color: #0a3d62;
+        margin-bottom: 12px;
+      }
+
+      .details {
+        font-size: 14px;
+        color: #444;
+        line-height: 1.5;
+        margin-top: 10px;
+      }
+
+      @keyframes scrollMedia {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
       @keyframes fadeUp {
         from {
           opacity: 0;
-          transform: translateY(25px);
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+/* FILTER BAR CONTAINER */
+.filter-bar {
+  max-width: 1200px;
+  margin: 20px auto 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* ALL SELECTS */
+.filter-bar select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background: #fff;
+  transition: all 0.25s ease;
+}
+
+.filter-bar select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+/* PRICE RANGE */
+.price-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.price-range input {
+  width: 120px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.price-range input::placeholder {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.price-range input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* DASHBOARD BUTTON */
+.filter-bar button {
+  background: #0a3d62;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-bar button:hover {
+  background: #07406b;
+}
+
+/* RESPONSIVE: STACK FILTERS ON MOBILE */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .price-range {
+    justify-content: center;
+  }
+
+  .filter-bar button {
+    width: 100%;
+  }
+}
+
+
+      .hero-overview {
+        position: relative;
+        border-radius: 3px;
+        min-height: 40vh;
+        background-image: url("../assets/comp.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
+        z-index: 5;
+      }
+
+      .hero-content {
+        position: relative;
+        text-align: left;
+        max-width: 900px;
+        color: #fff;
+        animation: heroFade 1.4s ease forwards;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+      }
+
+      .hero-content p {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        opacity: 0.95;
+      }
+
+      @keyframes heroFade {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
 
         to {
@@ -442,204 +288,491 @@
         }
       }
     </style>
-  </section>
+  </head>
 
-  <h2 class="page-title">All Properties</h2>
-  <div class="filter-bar">
-    <select id="filterLocation">
-      <option value="">All Locations</option>
-    </select>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <div class="container">
+        <nav class="navbar">
+          <div class="brand">
+            <a href="index.html" class="logo-link">
+              <img
+                src="assets/new_logo.jpg"
+                alt="Shelter Nest Realty Logo"
+                class="logo"
+              />
+            </a>
+          </div>
 
-    <select id="filterType">
-      <option value="">Property Type</option>
-      <option value="Apartment">Apartment</option>
-      <option value="Duplex">Duplex</option>
-      <option value="Land">Land</option>
-    </select>
+          <!-- Hamburger -->
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
-    <select id="filterBeds">
-      <option value="">Beds</option>
-      <option value="1">1+</option>
-      <option value="2">2+</option>
-      <option value="3">3+</option>
-      <option value="4">4+</option>
-    </select>
+          <div class="nav-links" id="navLinks">
+            <!-- Home -->
+            <a href="index.html">Home</a>
 
-    <select id="filterPrice">
-      <option value="">Max Price</option>
-      <option value="50000000">₦50m</option>
-      <option value="100000000">₦100m</option>
-      <option value="200000000">₦200m</option>
-    </select>
-    <select id="filterSaleRent">
-      <option value="">Sale / Rent</option>
-      <option value="Sale">For Sale</option>
-      <option value="Rent">For Rent</option>
-    </select>
-    <button onclick="applyFilters()">Filter</button>
-  </div>
+            <!-- ABOUT US DROPDOWN -->
+            <div class="nav-item dropdown" style="cursor: pointer">
+              <a href="#" class="dropdown-toggle">
+                About Us <span class="arrow">▾</span>
+              </a>
 
-  <div class="subtitle">Premium listings curated for modern living</div>
+              <div class="dropdown-menu">
+                <a href="company-overview.html">Company Overview</a>
+                <a href="management-team.html">Management Team</a>
+                <a href="affiliations.html">Professional Affiliates</a>
+              </div>
+            </div>
 
-  <div id="allProperties" class="properties-grid"></div>
-  <footer>
-    © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
-    Rights Reserved
-  </footer>
-  <script src="js/script.js"></script>
-  <script src="js/detail.js"></script>
-  <script src="js/main.js"></script>
+            <!-- SERVICES DROPDOWN -->
+            <div class="nav-item dropdown">
+              <a href="services.html" class="dropdown-toggle">
+                Services <span class="arrow">▾</span>
+              </a>
 
-  <script type="module">
-    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+              <div class="dropdown-menu dropdown-wide">
+                <a href="valuation.html">Valuation for All Purposes</a>
+                <a href="propertymanagement.html"
+                  >Property & Facility Management</a
+                >
+                <a href="estateagency.html">Estate Agency</a>
+                <a href="feasibility.html">Feasibility & Viability Appraisal</a>
+                <a href="titlesearch.html">Title Search & Verification</a>
+                <a href="projectmanagement.html">Project Management</a>
+                <a href="propertymarketing.html">Property Marketing</a>
+                <a href="advisory.html">Real Estate Advisory Services</a>
+              </div>
+            </div>
 
-    // Supabase
-    const supabase = createClient(
-      "https://fcxeuhmgizpjzldaervh.supabase.co",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50",
-    );
+            <!-- Other Links -->
+            <a href="properties.html">Properties</a>
+            <a href="contact.html">Contact Us</a>
+            <!-- INSIGHTS MEGA MENU -->
 
-    let allProperties = [];
+            <div class="nav-item mega-dropdown">
+              <a href="#" class="dropdown-toggle">
+                Insights <span class="arrow">▾</span>
+              </a>
 
-    async function loadAllProperties() {
-      const { data, error } = await supabase
-        .from("properties")
-        .select("*")
-        .order("created_at", { ascending: false });
+              <div class="mega-menu insights-dropdown">
+                <!-- LEFT MENU -->
+                <div class="insights-tabs">
+                  <button class="tab-btn active" data-tab="newsletter">
+                    Newsletter
+                  </button>
+                  <button class="tab-btn" data-tab="podcast">Podcast</button>
+                  <button class="tab-btn" data-tab="social">
+                    Connect with us
+                  </button>
+                </div>
 
-      if (error) {
-        console.error(error);
-        return;
-      }
+                <!-- RIGHT CONTENT -->
+                <div class="insights-content">
+                  <!-- NEWSLETTER (LINKEDIN) -->
+                  <div class="tab-content active" id="newsletter">
+                    <div style="text-align: center">
+                      <h4>The Real Estate Review</h4>
+                      <p style="font-size: 1px">
+                        Get expert insights you need to stay ahead in real
+                        estate.
+                      </p>
+                    </div>
 
-      allProperties = data || [];
-      populateFilters(data);
-      renderProperties(data);
-      [
-        "filterLocation",
-        "filterType",
-        "filterBeds",
-        "filterPrice",
-        "filterSaleRent",
-      ].forEach((id) =>
-        document.getElementById(id).addEventListener("change", applyFilters),
+                    <a
+                      href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Who Really Pays for Demolitions?</h5>
+                      <p style="font-size: 1px">
+                        Should homeowners be punished for regulatory failures
+                        they did not cause? One of the most painful aspects of
+                        this crisis is the displacement of ordinary citizens who
+                        purchased homes believing them to be legally compliant.
+                        Consider this scenario; A young family bought....
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/pulse/who-really-pays-demolitions-hard-questions-lagos-must-xyv1e/?trackingId=T4fwDwZ%2FTw%2BAroIXrT1img%3D%3D"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>
+                        The Mortgage System in Nigeria’s Real Estate Sector
+                      </h5>
+                      <p style="font-size: 1px">
+                        The mortgage system is the cornerstone of real estate
+                        financing worldwide, providing individuals and
+                        businesses with access to long-term credit for property
+                        acquisition. In advanced economies, such as the United
+                        States, United Kingdom, and Canada, well-structured ...
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/newsletters/the-real-estate-review-7347206551956254720/"
+                      target="_blank"
+                      class="see-more"
+                    >
+                      View more on LinkedIn →
+                    </a>
+                  </div>
+
+                  <!-- PODCAST (YOUTUBE) -->
+                  <div class="tab-content" id="podcast">
+                    <a
+                      href="https://www.youtube.com/watch?v=1oDmcjf4MO4"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Transforming Nigerian Neighborhoods</h5>
+                      <p>
+                        How modern property development is reshaping urban
+                        communities…
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=9yST5KGYSmE"
+                      target="_blank"
+                      class="insight-item"
+                    >
+                      <h5>Smart Investment Strategies</h5>
+                      <p>
+                        Maximizing returns in Lagos’ evolving real estate
+                        market…
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/@shelternestrealty"
+                      target="_blank"
+                      class="see-more"
+                    >
+                      Visit YouTube Channel →
+                    </a>
+                  </div>
+                  <div class="tab-content" id="social">
+                    <div class="social-icons">
+                      <a
+                        href="https://www.linkedin.com/in/esvoladayookeniyi/"
+                        target="_blank"
+                        aria-label="LinkedIn"
+                        class="social-icon linkedin"
+                      >
+                        <img src="assets/linkedin.jpg" alt="LinkedIn" />
+                      </a>
+
+                      <a
+                        href="#"
+                        target="_blank"
+                        aria-label="Facebook"
+                        class="social-icon facebook"
+                      >
+                        <img src="assets/facebook.png" alt="Facebook" />
+                      </a>
+
+                      <a
+                        href="#"
+                        target="_blank"
+                        aria-label="Instagram"
+                        class="social-icon instagram"
+                      >
+                        <img src="assets/ig.jpg" alt="Instagram" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <section
+      class="page-hero hero-overview"
+      style="
+        position: relative;
+        height: 45vh;
+        background: url(&quot;assets/comp.jpeg&quot;) center/cover no-repeat;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <!-- Overlay -->
+      <div
+        style="
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
+        "
+      ></div>
+
+      <!-- Content -->
+      <div
+        class="container hero-content"
+        style="
+          position: relative;
+          z-index: 2;
+          text-align: left;
+          color: #ffffff;
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 0 20px;
+          animation: fadeUp 1.1s ease forwards;
+        "
+      >
+        <h1
+          style="
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+          "
+        >
+          Find the Right Property
+        </h1>
+
+        <p style="font-size: 1.1rem; line-height: 1.7; opacity: 0.95">
+          Explore our carefully selected residential and commercial properties
+          for sale and rent across prime locations in Nigeria.
+        </p>
+      </div>
+
+      <!-- Inline animation -->
+      <style>
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(25px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      </style>
+    </section>
+
+    <h2 class="page-title">All Properties</h2>
+    <div class="filter-bar">
+      <select id="filterLocation">
+        <option value="">All Locations</option>
+      </select>
+
+      <select id="filterType">
+        <option value="">Property Type</option>
+        <option value="Land">Land</option>
+        <option value="House">House</option>
+        <option value="Commercial Property">Commercial Property</option>
+        <option value="Flat / Apartment">Flat / Apartment</option>
+      </select>
+
+      <select id="filterBeds">
+        <option value="">Beds</option>
+        <option value="1">1+</option>
+        <option value="2">2+</option>
+        <option value="3">3+</option>
+        <option value="4">4+</option>
+      </select>
+
+      <div class="price-range">
+        <input
+          type="number"
+          id="minPrice"
+          placeholder="Min Price (₦)"
+          style="width: 120px"
+        />
+
+        <span style="padding: 0 6px">–</span>
+
+        <input
+          type="number"
+          id="maxPrice"
+          placeholder="Max Price (₦)"
+          style="width: 120px"
+        />
+      </div>
+
+      <select id="filterCategory">
+        <option value="">Category</option>
+        <option value="Sale">For Sale</option>
+        <option value="Rent">For Rent</option>
+      </select>
+
+      <button onclick="applyFilters()">Filter</button>
+    </div>
+
+    <div class="subtitle">Premium listings curated for modern living</div>
+
+    <div id="allProperties" class="properties-grid"></div>
+    <footer>
+      © <span>Shelter Nest Realty</span> — Estate Surveyors & Valuers | All
+      Rights Reserved
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="js/detail.js"></script>
+    <script src="js/main.js"></script>
+
+    <script type="module">
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+      // Supabase
+      const supabase = createClient(
+        "https://fcxeuhmgizpjzldaervh.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjeGV1aG1naXpwanpsZGFlcnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDM5MDIsImV4cCI6MjA4MzQ3OTkwMn0.Q_V24qHvCn_iC6OZiP_Y83C_BzOgBL39yRY1RdP8k50",
       );
-    }
 
-    function populateFilters(properties) {
-      const locationSelect = document.getElementById("filterLocation");
-      const typeSelect = document.getElementById("filterType");
+      let allProperties = [];
 
-      const locations = [
-        ...new Set(properties.map((p) => p.locality).filter(Boolean)),
-      ];
-      const types = [
-        ...new Set(properties.map((p) => p.property_type).filter(Boolean)),
-      ];
+      async function loadAllProperties() {
+        const { data, error } = await supabase
+          .from("properties")
+          .select("*")
+          .order("created_at", { ascending: false });
 
-      locations.forEach((loc) => {
-        const option = document.createElement("option");
-        option.value = loc;
-        option.textContent = loc;
-        locationSelect.appendChild(option);
-      });
+        if (error) {
+          console.error(error);
+          return;
+        }
 
-      // Clear type options first
-      typeSelect.innerHTML = `<option value="">Property Type</option>`;
-      types.forEach((t) => {
-        const option = document.createElement("option");
-        option.value = t;
-        option.textContent = t;
-        typeSelect.appendChild(option);
-      });
-    }
-
-    function applyFilters() {
-      const location = document.getElementById("filterLocation").value;
-      const type = document.getElementById("filterType").value;
-      const beds = document.getElementById("filterBeds").value;
-      const maxPrice = document.getElementById("filterPrice").value;
-      const saleRent = document.getElementById("filterSaleRent").value;
-
-      const filtered = allProperties.filter((p) => {
-        return (
-          (!location || p.locality === location) &&
-          (!type || p.property_type === type) &&
-          (!saleRent || p.sale_rent === saleRent) &&
-          (!beds || (p.bedrooms && p.bedrooms >= Number(beds))) &&
-          (!maxPrice || (p.price && p.price <= Number(maxPrice)))
+        allProperties = data || [];
+        populateFilters(data);
+        renderProperties(data);
+        [
+          "filterLocation",
+          "filterType",
+          "filterBeds",
+          "filterPrice",
+          "filterSaleRent",
+        ].forEach((id) =>
+          document.getElementById(id).addEventListener("change", applyFilters),
         );
-      });
-
-      renderProperties(filtered);
-    }
-
-    function renderProperties(properties) {
-      const container = document.getElementById("allProperties");
-
-      if (!properties.length) {
-        container.innerHTML =
-          "<p style='text-align:center'>No matching properties</p>";
-        return;
       }
 
-      container.innerHTML = properties
-        .map((p) => {
-          // Media
-          const mediaHTML = (p.images || [])
-            .map((url) =>
-              url.match(/\.(mp4|webm|ogg)$/i)
-                ? `<video muted autoplay loop playsinline src="${url}"></video>`
-                : `<img src="${url}" alt="${p.title}">`,
-            )
-            .join("");
+      function populateFilters(properties) {
+        const locationSelect = document.getElementById("filterLocation");
+        const typeSelect = document.getElementById("filterType");
 
-          // Build details without showing null/empty
-          const detailsArr = [];
-          if (p.market_status)
-            detailsArr.push(`<span>Status: ${p.market_status}</span>`);
-          if (p.category)
-            detailsArr.push(`<span>Category: ${p.category}</span>`);
-          if (p.property_type)
-            detailsArr.push(
-              `<span>Type: ${p.property_type}${p.property_subtype ? " - " + p.property_subtype : ""}</span>`,
-            );
-          if (p.locality || p.street)
-            detailsArr.push(
-              `<span>Location: ${[p.locality, p.street].filter(Boolean).join(", ")}</span>`,
-            );
-          if (p.bedrooms)
-            detailsArr.push(`<span>Bedrooms: ${p.bedrooms}</span>`);
-          if (p.bathrooms)
-            detailsArr.push(`<span>Bathrooms: ${p.bathrooms}</span>`);
-          if (p.toilets)
-            detailsArr.push(`<span>Toilets: ${p.toilets}</span>`);
-          if (p.parking)
-            detailsArr.push(`<span>Parking: ${p.parking}</span>`);
-          if (p.total_area)
-            detailsArr.push(`<span>Total Area: ${p.total_area} sqm</span>`);
-          if (p.covered_area)
-            detailsArr.push(
-              `<span>Covered Area: ${p.covered_area} sqm</span>`,
-            );
-          if (p.furnished !== undefined)
-            detailsArr.push(
-              `<span>Furnished: ${p.furnished ? "Yes" : "No"}</span>`,
-            );
-          if (p.serviced !== undefined)
-            detailsArr.push(
-              `<span>Serviced: ${p.serviced ? "Yes" : "No"}</span>`,
-            );
-          if (p.video_link)
-            detailsArr.push(
-              `<span><a href="${p.video_link}" target="_blank">Watch Video</a></span>`,
-            );
+        const locations = [
+          ...new Set(properties.map((p) => p.locality).filter(Boolean)),
+        ];
+        const types = [
+          ...new Set(properties.map((p) => p.property_type).filter(Boolean)),
+        ];
 
-          const descriptionHTML = p.description
-            ? `<p>${p.description.substring(0, 150)}...</p>`
-            : "";
+        locations.forEach((loc) => {
+          const option = document.createElement("option");
+          option.value = loc;
+          option.textContent = loc;
+          locationSelect.appendChild(option);
+        });
 
-          return `
+        // Clear type options first
+        typeSelect.innerHTML = `<option value="">Property Type</option>`;
+        types.forEach((t) => {
+          const option = document.createElement("option");
+          option.value = t;
+          option.textContent = t;
+          typeSelect.appendChild(option);
+        });
+      }
+
+      function applyFilters() {
+        const location = document.getElementById("filterLocation").value;
+        const type = document.getElementById("filterType").value;
+        const beds = document.getElementById("filterBeds").value;
+        const minPrice = document.getElementById("minPrice").value;
+        const maxPrice = document.getElementById("maxPrice").value;
+        const category = document.getElementById("filterCategory").value;
+
+        const filtered = allProperties.filter((p) => {
+          return (
+            (!location || p.locality === location) &&
+            (!type || p.property_type === type) &&
+            (!category || p.category === category) &&
+            (!beds || (p.bedrooms && p.bedrooms >= Number(beds))) &&
+            (!minPrice || (p.price && p.price >= Number(minPrice))) &&
+            (!maxPrice || (p.price && p.price <= Number(maxPrice)))
+          );
+        });
+
+        renderProperties(filtered);
+      }
+
+      function renderProperties(properties) {
+        const container = document.getElementById("allProperties");
+
+        if (!properties.length) {
+          container.innerHTML =
+            "<p style='text-align:center'>No matching properties</p>";
+          return;
+        }
+
+        container.innerHTML = properties
+          .map((p) => {
+            // Media
+            const mediaHTML = (p.images || [])
+              .map((url) =>
+                url.match(/\.(mp4|webm|ogg)$/i)
+                  ? `<video muted autoplay loop playsinline src="${url}"></video>`
+                  : `<img src="${url}" alt="${p.title}">`,
+              )
+              .join("");
+
+            // Build details without showing null/empty
+            const detailsArr = [];
+            if (p.market_status)
+              detailsArr.push(`<span>Status: ${p.market_status}</span>`);
+            if (p.category)
+              detailsArr.push(`<span>Category: ${p.category}</span>`);
+            if (p.property_type)
+              detailsArr.push(
+                `<span>Type: ${p.property_type}${p.property_subtype ? " - " + p.property_subtype : ""}</span>`,
+              );
+            if (p.locality || p.street)
+              detailsArr.push(
+                `<span>Location: ${[p.locality, p.street].filter(Boolean).join(", ")}</span>`,
+              );
+            if (p.bedrooms)
+              detailsArr.push(`<span>Bedrooms: ${p.bedrooms}</span>`);
+            if (p.bathrooms)
+              detailsArr.push(`<span>Bathrooms: ${p.bathrooms}</span>`);
+            if (p.toilets)
+              detailsArr.push(`<span>Toilets: ${p.toilets}</span>`);
+            if (p.parking)
+              detailsArr.push(`<span>Parking: ${p.parking}</span>`);
+            if (p.total_area)
+              detailsArr.push(`<span>Total Area: ${p.total_area} sqm</span>`);
+            if (p.covered_area)
+              detailsArr.push(
+                `<span>Covered Area: ${p.covered_area} sqm</span>`,
+              );
+            if (p.furnished !== undefined)
+              detailsArr.push(
+                `<span>Furnished: ${p.furnished ? "Yes" : "No"}</span>`,
+              );
+            if (p.serviced !== undefined)
+              detailsArr.push(
+                `<span>Serviced: ${p.serviced ? "Yes" : "No"}</span>`,
+              );
+            if (p.video_link)
+              detailsArr.push(
+                `<span><a href="${p.video_link}" target="_blank">Watch Video</a></span>`,
+              );
+
+            const descriptionHTML = p.description
+              ? `<p>${p.description.substring(0, 150)}...</p>`
+              : "";
+
+            return `
       <div class="property-card" onclick="location.href='property.html?id=${p.id}'">
        <div class="media-wrapper">
   <div class="media-track">
@@ -654,13 +787,12 @@
                 </div>
       </div>
     `;
-        })
-        .join("");
-    }
+          })
+          .join("");
+      }
 
-    // Initialize
-    loadAllProperties();
-  </script>
-</body>
-
+      // Initialize
+      loadAllProperties();
+    </script>
+  </body>
 </html>
