@@ -70,7 +70,7 @@ const propertyCards = document.querySelectorAll('.property-card');
 
 const observers = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting){
+    if (entry.isIntersecting) {
       entry.target.classList.add('visible');
       observers.unobserve(entry.target);
     }
@@ -84,66 +84,66 @@ const propertyCardss = document.querySelectorAll('.property-page-card');
 
 const observerss = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting){
+    if (entry.isIntersecting) {
       entry.target.classList.add('visible');
       observerss.unobserve(entry.target);
     }
   });
 }, { threshold: 0.2 });
 
- function openModal(id) {
-    document.getElementById(id).style.display = "block";
-  }
+function openModal(id) {
+  document.getElementById(id).style.display = "block";
+}
 
-  function closeModal(id) {
-    document.getElementById(id).style.display = "none";
-  }
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
 
-  window.onclick = function(e) {
-    document.querySelectorAll('.modal').forEach(modal => {
-      if (e.target === modal) modal.style.display = "none";
-    });
-  };
-  // Detect mobile devices
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+window.onclick = function (e) {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+};
+// Detect mobile devices
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  if (isMobile) {
-    // Select all dropdown toggles
-    const toggles = document.querySelectorAll('.dropdown-sub-toggle');
+if (isMobile) {
+  // Select all dropdown toggles
+  const toggles = document.querySelectorAll('.dropdown-sub-toggle');
 
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', function(e) {
-        e.stopPropagation(); // prevent closing when clicking inside
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation(); // prevent closing when clicking inside
 
-        // Close other open dropdowns
-        document.querySelectorAll('.mega-menu').forEach(menu => {
-          if (menu !== this.nextElementSibling) {
-            menu.style.opacity = 0;
-            menu.style.visibility = 'hidden';
-          }
-        });
-
-        // Toggle current menu
-        const menu = this.nextElementSibling;
-        if (menu.style.visibility === 'visible') {
+      // Close other open dropdowns
+      document.querySelectorAll('.mega-menu').forEach(menu => {
+        if (menu !== this.nextElementSibling) {
           menu.style.opacity = 0;
           menu.style.visibility = 'hidden';
-        } else {
-          menu.style.opacity = 1;
-          menu.style.visibility = 'visible';
         }
       });
-    });
 
-    // Close dropdown if clicking outside
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.mega-menu').forEach(menu => {
+      // Toggle current menu
+      const menu = this.nextElementSibling;
+      if (menu.style.visibility === 'visible') {
         menu.style.opacity = 0;
         menu.style.visibility = 'hidden';
-      });
+      } else {
+        menu.style.opacity = 1;
+        menu.style.visibility = 'visible';
+      }
     });
-  }
- 
+  });
+
+  // Close dropdown if clicking outside
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.mega-menu').forEach(menu => {
+      menu.style.opacity = 0;
+      menu.style.visibility = 'hidden';
+    });
+  });
+}
+
 const statNumbers = document.querySelectorAll('.stat-number');
 
 function startCounting() {
@@ -179,20 +179,20 @@ const statsObserver = new IntersectionObserver(entries => {
 
 statsObserver.observe(statsSection);
 
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
 
-  tabButtons.forEach(btn => {
-    btn.addEventListener('mouseenter', activateTab);
-    btn.addEventListener('click', activateTab);
-  });
+tabButtons.forEach(btn => {
+  btn.addEventListener('mouseenter', activateTab);
+  btn.addEventListener('click', activateTab);
+});
 
-  function activateTab(e) {
-    const target = e.currentTarget.dataset.tab;
+function activateTab(e) {
+  const target = e.currentTarget.dataset.tab;
 
-    tabButtons.forEach(b => b.classList.remove('active'));
-    tabContents.forEach(c => c.classList.remove('active'));
+  tabButtons.forEach(b => b.classList.remove('active'));
+  tabContents.forEach(c => c.classList.remove('active'));
 
-    e.currentTarget.classList.add('active');
-    document.getElementById(target).classList.add('active');
-  }
+  e.currentTarget.classList.add('active');
+  document.getElementById(target).classList.add('active');
+}
