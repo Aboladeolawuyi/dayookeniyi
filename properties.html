@@ -69,13 +69,14 @@
       animation: scrollMedia 18s linear infinite;
     }
 
-    .media-track img,
-    .media-track video {
-      width: 320px;
-      height: 220px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
+  .media-track img,
+.media-track video {
+  width: 320px;
+  height: 220px;
+  object-fit: contain;   /* ✅ show full image */
+  background: #000;
+  flex-shrink: 0;
+}
 
     .property-content {
       padding: 18px 20px 22px;
@@ -640,7 +641,12 @@
 
           return `
       <div class="property-card" onclick="location.href='property.html?id=${p.id}'">
-        <div class="media-wrapper">${mediaHTML}</div>
+       <div class="media-wrapper">
+  <div class="media-track">
+    ${mediaHTML}
+  </div>
+</div>
+
         <div class="property-content">
           <h4>${p.title}</h4>
           <div class="price">${p.price ? "₦" + Number(p.price).toLocaleString() : ""}</div>
